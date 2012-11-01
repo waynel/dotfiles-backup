@@ -2,7 +2,7 @@
 
 autoload colors && colors
 
-echo "$fg[green]Installing...$reset_color"
+echo "\n$fg[green]Installing...$reset_color"
 
 # Reacts to user input when a link exists
 # y: remove and re-link this file
@@ -57,6 +57,6 @@ for symlink (./**/*.symlink) {
   fi
 }
 
-echo "$fg[green]Done!$reset_color"
+echo "$fg[green]Done!\n$reset_color"
 
 exit 0
