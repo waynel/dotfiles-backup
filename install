@@ -27,8 +27,7 @@ process_exists () {
   esac
 }
 
-# Creates a symlink, first removing it if it already
-# exists
+# Creates a symlink, first removing it if it already exists
 make_link () {
   if [ -e $2 ]; then
     rm $2
