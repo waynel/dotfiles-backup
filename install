@@ -10,14 +10,14 @@ echo "\n$fg[green]Installing...$reset_color"
 # a: remove and re-link all files without prompting
 # q: quit, exit 1
 process_exists () {
-  echo "$fg[yellow]  ☆  $2 already exists. Overwrite? [ynaq]$reset_color"
+  echo "$fg[yellow]  ☆  $2 already exists. Overwrite? [(Y)es (n)o (A)ll (q)uit]$reset_color"
 
   read -qs action
 
   case $action in
-  y)  make_link $1 $2
+  Y)  make_link $1 $2
       ;;
-  a)  link_all=0
+  A)  link_all=0
       make_link $1 $2
       ;;
   q)  echo "$fg[red]Goodbye!$reset_color"
