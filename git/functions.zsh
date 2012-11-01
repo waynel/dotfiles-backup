@@ -5,5 +5,5 @@ current_branch () {
 
 git-local-remote () {
   local branch=$1
-  git checkout -b $branch origin/$branch
+  git checkout -b $branch  --track origin/$branch
 }
