@@ -12,11 +12,10 @@ echo "$fg[green]Installing...$reset_color"
 process_exists () {
   echo "$fg[yellow]  ☆  $2 already exists. Overwrite? [ynaq]$reset_color"
 
-  read -s action
+  read -qs action
 
   case $action in
-  y)  rm $2
-      make_link $1 $2
+  y)  make_link $1 $2
       ;;
   a)  link_all=0
       make_link $1 $2
