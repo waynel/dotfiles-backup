@@ -4,27 +4,31 @@ autoload colors && colors
 
 echo "$fg[green]Installing...$reset_color"
 
+# Reacts to user input when a link exists
+# y: remove and re-link this file
+# n: do nothing, continue
+# a: remove and re-link all files without prompting
+# q: quit, exit 1
 process_exists () {
   echo "$fg[yellow]  ☆  $2 already exists. Overwrite? [ynaq]$reset_color"
 
   read -s action
 
   case $action in
-  y)
-    rm $2
-    make_link $1 $2
-  ;;
-  a)
-    link_all=0
-    make_link $1 $2
-  ;;
-  q)
-    echo "$fg[red]Goodbye!$reset_color"
-    exit 1
-  ;;
+  y)  rm $2
+      make_link $1 $2
+      ;;
+  a)  link_all=0
+      make_link $1 $2
+      ;;
+  q)  echo "$fg[red]Goodbye!$reset_color"
+      exit 1
+      ;;
   esac
 }
 
+# Creates a symlink, first removing it if it already
+# exists
 make_link () {
   if [ -e $2 ]; then
     rm $2
@@ -35,6 +39,9 @@ make_link () {
   echo "$fg[green]  ★  $2 linked!$reset_color"
 }
 
+
+# Loop over all symlink files in the directory, linking them
+# or prompting for instructions when necessary
 for symlink (./**/*.symlink) {
   link_to_path="$(pwd)$(echo $symlink | sed 's/\.//')"
   link_from_path="$HOME/.$(basename $symlink | awk -F. '{ print $1 }')"
