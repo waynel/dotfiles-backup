@@ -23,6 +23,7 @@ process_exists () {
   q)  echo "$fg[red]Goodbye!$reset_color"
       exit 1
       ;;
+  *)  echo "$fg[red]  -  Okay, not linking.$reset_color"
   esac
 }
 
