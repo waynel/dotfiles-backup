@@ -5,9 +5,9 @@ autoload colors && colors
 echo "\n$fg[green]Installing...$reset_color"
 
 # Reacts to user input when a link exists
-# y: remove and re-link this file
+# Y: remove and re-link this file
 # n: do nothing, continue
-# a: remove and re-link all files without prompting
+# A: remove and re-link all files without prompting
 # q: quit, exit 1
 process_exists () {
   echo "$fg[yellow]  ☆  $2 already exists. Overwrite? [(Y)es (n)o (A)ll (q)uit]$reset_color"
