@@ -4,15 +4,49 @@ autoload colors && colors
 
 echo "$fg[green]Installing...$reset_color"
 
+process_exists () {
+  echo "$fg[yellow]  ☆  $2 already exists. Overwrite? [ynaq]$reset_color"
+
+  read -s action
+
+  case $action in
+  y)
+    rm $2
+    make_link $1 $2
+  ;;
+  a)
+    link_all=0
+    make_link $1 $2
+  ;;
+  q)
+    echo "$fg[red]Goodbye!$reset_color"
+    exit 1
+  ;;
+  esac
+}
+
+make_link () {
+  if [ -e $2 ]; then
+    rm $2
+  fi
+
+  ln -s $1 $2
+
+  echo "$fg[green]  ★  $2 linked!$reset_color"
+}
+
 for symlink (./**/*.symlink) {
-  link_to_path="$(pwd)$(dirname $symlink | sed 's/\.//')/$(basename $symlink)"
+  link_to_path="$(pwd)$(echo $symlink | sed 's/\.//')"
   link_from_path="$HOME/.$(basename $symlink | awk -F. '{ print $1 }')"
 
-  if [ -e $link_from_path ]; then
-    echo "$fg[yellow]  ☆  $link_from_path already exists.$reset_color"
+  if [ $link_all ]; then
+    make_link $link_to_path $link_from_path
   else
-    ln -s $link_to_path $link_from_path
-    echo "$fg[green]  ★  $link_from_path linked!$reset_color"
+    if [ -e $link_from_path ]; then
+      process_exists $link_to_path $link_from_path
+    else
+      make_link $link_to_path $link_from_path
+    fi
   fi
 }
 
