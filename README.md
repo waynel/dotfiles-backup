@@ -9,7 +9,7 @@ The basic structure of my dotfiles are based on Zach Holman's [holman/dotfiles](
 1. Clone the repository `git clone git@github.com:jclem/dotfiles.git`
 2. `cd` into the repo `cd dotfiles`
 3. Run the installer `./install`
-4. Checkout system ruby (I use RVM, so: `rvm use system`)
+4. Switch to system ruby (I use RVM, so: `rvm use system`)
 5. Get submodules `git submodule init`
 6. Build Command-T:
 
