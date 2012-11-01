@@ -7,9 +7,13 @@ echo "\n$fg[green]Uninstalling...$reset_color"
 for symlink (./**/*.symlink) {
   link_from_path="$HOME/.$(basename $symlink | awk -F. '{ print $1 }')"
 
-  if [ -h $link_from_path ]; then
-    rm $link_from_path
-    echo "$fg[green]  ★  $link_from_path removed!$reset_color"
+  if [ -e $link_from_path ]; then
+    if [ -h $link_from_path ]; then
+      rm $link_from_path
+      echo "$fg[green]  ★  $link_from_path removed!$reset_color"
+    else
+      echo "$fg[yellow]  ☆  $link_from_path is not a symbolic link. Ignoring.$reset_color"
+    fi
   fi
 }
 
