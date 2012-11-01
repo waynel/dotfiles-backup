@@ -1,0 +1,8 @@
+filetype off
+call pathogen#infect()
+
+set nocompatible
+syntax on
+filetype plugin indent on
+
+runtime! init/**.vim

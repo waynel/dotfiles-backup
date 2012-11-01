@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+autoload colors && colors
+
+echo "$fg[green]Installing...$reset_color"
+
+for symlink (./**/*.symlink) {
+  link_to_path="$(pwd)$(dirname $symlink | sed 's/\.//')/$(basename $symlink)"
+  link_from_path="$HOME/.$(basename $symlink | awk -F. '{ print $1 }')"
+
+  if [ -e $link_from_path ]; then
+    echo "$fg[yellow]  ☆  $link_from_path already exists.$reset_color"
+  else
+    ln -s $link_to_path $link_from_path
+    echo "$fg[green]  ★  $link_from_path linked!$reset_color"
+  fi
+}
+
+echo "$fg[green]Done!$reset_color"
+
+exit 0
