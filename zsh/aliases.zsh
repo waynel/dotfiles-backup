@@ -1,3 +1,4 @@
-alias -g ..="cd .."
-alias -g ...="cd ../.."
-alias -g reload!='source $HOME/.zshrc'
+alias ..="cd .."
+alias ...="cd ../.."
+alias reload!='source $HOME/.zshrc'
+alias ls="ls -G"
