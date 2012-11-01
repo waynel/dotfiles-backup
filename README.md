@@ -10,7 +10,7 @@ The basic structure of my dotfiles are based on Zach Holman's [holman/dotfiles](
 2. `cd` into the repo `cd dotfiles`
 3. Run the installer `./install`
 4. Switch to system ruby (I use RVM, so: `rvm use system`)
-5. Get submodules `git submodule init`
+5. Get submodules `git submodule update --init`
 6. Build Command-T:
 
 ```bash
