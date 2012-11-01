@@ -12,7 +12,7 @@ for symlink (./**/*.symlink) {
       rm $link_from_path
       echo "$fg[green]  ★  $link_from_path removed!$reset_color"
     else
-      echo "$fg[yellow]  ☆  $link_from_path is not a symbolic link. Ignoring.$reset_color"
+      echo "$fg[red]  ☆  $link_from_path is not a symbolic link. Ignoring.$reset_color"
     fi
   fi
 }
