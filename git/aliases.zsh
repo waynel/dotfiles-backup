@@ -1,2 +1,5 @@
-alias -g ggpull='git pull origin $(current_branch)'
-alias -g ggpush='git push origin $(current_branch)'
+alias ggpull='git pull origin $(current_branch)'
+alias ggpush='git push origin $(current_branch)'
+alias gs='git status'
+alias gco='git co'
+alias gaa='git add -A'
