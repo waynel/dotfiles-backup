@@ -7,3 +7,5 @@ autoload -U compinit
 compinit
 
 for config_file ($ZSH/**/completion.zsh) source $config_file
+
+[ -e ~/.localrc ] && source ~/.localrc
