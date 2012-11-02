@@ -1,0 +1,2 @@
+local branch=$1
+git checkout -b $branch  --track origin/$branch
