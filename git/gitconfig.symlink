@@ -21,7 +21,7 @@
 	name = Jonathan Clem
 	email = jonathan@jclem.net
 [core]
-	excludesfile = /Users/clem/.gitignore_global
+	excludesfile = ~/.gitignore_global
   editor = "vim"
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
