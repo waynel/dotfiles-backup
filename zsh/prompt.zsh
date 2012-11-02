@@ -6,7 +6,7 @@ git_branch () {
   if [[ $ref == "" ]]; then
     echo ""
   else
-    echo %{$fg[cyan]%}git: { %{$fg[red]%}$ref%{$reset_color%}%{$fg[cyan]%} }%{$reset_color%}
+    echo " %{$fg[cyan]%}git: { %{$fg[red]%}$ref%{$reset_color%}%{$fg[cyan]%} }%{$reset_color%}"
   fi
 }
 
@@ -16,12 +16,12 @@ git_dirty () {
     echo ""
   else
     if [[ $st == "nothing to commit (working directory clean)" ]]; then
-      echo %{$fg[green]%}✓%{$reset_color%}
+      echo %{$fg[green]%} ✓%{$reset_color%}
     else
-      echo %{$fg[red]%}✗%{$reset_color%}
+      echo %{$fg[red]%} ✗%{$reset_color%}
     fi
   fi
 }
 
-export PROMPT='%{$fg_bold[red]%}➜  %{$reset_color%}%{$fg[blue]%}%c%{$reset_color%} $(git_branch) $(git_dirty) '
+export PROMPT='%{$fg_bold[red]%}➜  %{$reset_color%}%{$fg[blue]%}%c%{$reset_color%}$(git_branch)$(git_dirty) '
 
