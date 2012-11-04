@@ -1,6 +1,9 @@
 export CODE=~/code
 export ZSH=$CODE/dotfiles
 
+# For Homebrew
+export PATH=/usr/local/bin:$PATH
+
 for config_file ($ZSH/**/*.zsh) source $config_file
 
 autoload -U compinit
