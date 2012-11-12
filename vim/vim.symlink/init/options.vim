@@ -2,7 +2,7 @@
 set list
 set listchars=trail:·
 
-set guifont=Inconsolata:h16
+set guifont=Inconsolata:h24
 set guioptions-=T  " Hide gui chrome
 set guioptions-=e  " Use text tabs
 set wildmode=list:longest

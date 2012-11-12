@@ -33,3 +33,5 @@
 	user = jclem
 [mergetool]
 	keepBackup = true
+[web]
+  browser = open
