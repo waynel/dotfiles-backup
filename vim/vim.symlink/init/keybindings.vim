@@ -10,6 +10,7 @@ nmap <leader>v :vsp<cr>
 nmap <leader>rv :source $MYVIMRC<cr>
 nmap <leader>rs :call ReloadAllSnippets()<cr>
 nmap <leader>u :GundoToggle<cr>
+nmap <leader>a :Ack<space>
 
 nmap <leader>1 :set foldlevel=1<cr>
 nmap <leader>2 :set foldlevel=2<cr>
@@ -34,6 +35,7 @@ nmap <c-l> <c-w>l
 
 nmap <leader>s :%s/
 vmap <leader>s :s/
+vmap <silent> <leader>a y:Ack<space><c-r>"<cr>
 
 omap in( :<c-u>normal! f(vi(<cr>
 omap in" :<c-u>normal! f"vi"<cr>
