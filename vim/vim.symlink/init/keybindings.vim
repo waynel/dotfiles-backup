@@ -11,6 +11,7 @@ nmap <leader>rv :source $MYVIMRC<cr>
 nmap <leader>rs :call ReloadAllSnippets()<cr>
 nmap <leader>u :GundoToggle<cr>
 nmap <leader>a :Ack<space>
+nmap <silent> <leader>w :Gbrowse<cr>
 nmap <silent> <leader>A yiw:Ack<space><c-r>"<cr>
 
 nmap <leader>1 :set foldlevel=1<cr>
