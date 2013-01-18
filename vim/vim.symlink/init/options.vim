@@ -2,7 +2,7 @@
 set list
 set listchars=trail:·
 
-set guifont=Inconsolata:h24
+set guifont=Inconsolata:h18
 set guioptions-=T  " Hide gui chrome
 set guioptions-=e  " Use text tabs
 set wildmode=list:longest
@@ -19,6 +19,7 @@ set incsearch
 set splitright
 set splitbelow
 set autoread
+set shell=/bin/sh
 
 set autowriteall
 autocmd BufLeave,FocusLost * silent! wall
