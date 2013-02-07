@@ -13,6 +13,7 @@ nmap <leader>u :GundoToggle<cr>
 nmap <leader>a :Ack<space>
 nmap <silent> <leader>w :Gbrowse<cr>
 nmap <silent> <leader>A yiw:Ack<space><c-r>"<cr>
+nmap <leader>n :tabnew<cr>
 
 nmap <leader>1 :set foldlevel=1<cr>
 nmap <leader>2 :set foldlevel=2<cr>
