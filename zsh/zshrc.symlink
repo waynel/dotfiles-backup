@@ -1,8 +1,7 @@
 export CODE=~/code
 export ZSH=$CODE/dotfiles
 
-# For Homebrew
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.bin:$PATH
 
 for config_file ($ZSH/**/*.zsh) source $config_file
 
