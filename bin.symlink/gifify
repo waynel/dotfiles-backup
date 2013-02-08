@@ -2,16 +2,16 @@
 
 function printHelpAndExit {
   echo 'Usage:'
-  echo '  gifify -coxu filename'
+  echo '  gifify -coux filename'
   echo ''
   echo 'Options: (all optional)'
   echo '  c CROP:   The x and y crops, from the top left of the image, i.e. 640:480'
   echo '  o OUTPUT: The basename of the file to be output (default "output")'
-  echo '  x:        Remove the resulting image once the script is complete'
   echo '  u:        Upload the resulting image to CloudApp'
+  echo '  x:        Remove the resulting image once the script is complete'
   echo ''
   echo 'Example:'
-  echo '  gifify -c 240:80 -o my-gif -x -u my-movie.mov'
+  echo '  gifify -c 240:80 -o my-gif -u -x my-movie.mov'
   exit $1
 }
 
@@ -19,7 +19,7 @@ output=output
 
 OPTERR=0
 
-while getopts "c:o:xu" opt; do
+while getopts "c:o:ux" opt; do
   case $opt in
     c) crop=$OPTARG;;
     h) printHelpAndExit 0;;
