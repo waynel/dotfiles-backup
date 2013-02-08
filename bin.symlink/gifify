@@ -34,7 +34,6 @@ shift $(( OPTIND - 1 ))
 
 filename=$1
 if [ -z $filename ]; then printHelpAndExit 1; fi
-# echo 'done'; exit 1;
 
 if [ $crop ]; then
   crop="-vf crop=${crop}:0:0"
