@@ -6,7 +6,7 @@ The basic structure of my dotfiles are based on John Clems files [jclem/dotfiles
 
 ## Installation
 
-1. Clone the repository `git clone git@github.com:jclem/dotfiles.git`
+1. Clone the repository `git clone git@github.com:richsoni/dotfiles.git`
 2. `cd` into the repo `cd dotfiles`
 3. Run the installer `./install`
 4. Switch to system ruby (I use RVM, so: `rvm use system`)
