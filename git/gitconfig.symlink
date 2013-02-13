@@ -17,21 +17,8 @@
 	ui = auto
 [branch]
 	autosetupmerge = true
-[user]
-	name = Jonathan Clem
-	email = jonathan@jclem.net
 [core]
 	excludesfile = ~/.gitignore_global
   editor = "vim"
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[github]
-	user = richsoni
-[mergetool]
-	keepBackup = true
 [web]
   browser = open
