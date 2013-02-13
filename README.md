@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The basic structure of my dotfiles are based on John Clems files [jclem/dotfiles](https://github.com/holman/dotfiles) which are based off of Zach Holman's [holman/dotfiles](https://github.com/holman/dotfiles) repository. Essentially, configuration files are grouped by topic (i.e. "git", "vim", "zsh", etc.). `*.zsh` files are sourced automatically, and a file named `something.symlink` will by symlinked to `~/.something`.
+The basic structure of my dotfiles are based on John Clem's files [jclem/dotfiles](https://github.com/holman/dotfiles) which are based off of Zach Holman's [holman/dotfiles](https://github.com/holman/dotfiles) repository. Essentially, configuration files are grouped by topic (i.e. "git", "vim", "zsh", etc.). `*.zsh` files are sourced automatically, and a file named `something.symlink` will by symlinked to `~/.something`.
 
 ## Installation
 
