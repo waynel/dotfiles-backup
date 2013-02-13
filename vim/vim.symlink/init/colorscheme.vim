@@ -1,2 +1,2 @@
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme Tomorrow-Night-Eighties
