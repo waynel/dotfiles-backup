@@ -1,3 +1,4 @@
+;shortcuts inside of git command
 [alias]
 	st = status
 	di = diff
@@ -7,8 +8,10 @@
 	sta = stash
 	llog = log --date=local
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+;dont compalain about whitespace when merging
 [apply]
 	whitespace = nowarn
+;enable colors for the following commands
 [color]
 	branch = auto
 	diff = auto
@@ -16,7 +19,8 @@
 	status = auto
 	ui = auto
 [branch]
-	autosetupmerge = true
+  ;by default do git pull --rebase
+  autosetuprebase = always
 [core]
 	excludesfile = ~/.gitignore_global
   editor = "vim"
