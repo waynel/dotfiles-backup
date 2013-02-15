@@ -7,6 +7,9 @@ nmap ; :
 nmap <silent> \ :NERDTreeToggle<cr>
 nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
 nmap <leader>v :vsp<cr>
+map <leader>h :sp<cr>
+map <leader>H :botright sp<cr
+map <leader>V :botright vsp<cr>
 nmap <leader>rv :source $MYVIMRC<cr>
 nmap <leader>rs :call ReloadAllSnippets()<cr>
 nmap <leader>u :GundoToggle<cr>
@@ -14,7 +17,6 @@ nmap <leader>a :Ack<space>
 nmap <silent> <leader>w :Gbrowse<cr>
 nmap <silent> <leader>A yiw:Ack<space><c-r>"<cr>
 nmap <leader>n :tabnew<cr>
-
 nmap <leader>1 :set foldlevel=1<cr>
 nmap <leader>2 :set foldlevel=2<cr>
 nmap <leader>3 :set foldlevel=3<cr>
@@ -36,8 +38,8 @@ nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-l> <c-w>l
 
-nmap <leader>s :%s/
-vmap <leader>s :s/
+"nmap <leader>s :%s/
+"vmap <leader>s :s/
 vmap <silent> <leader>a y:Ack<space><c-r>"<cr>
 
 omap in( :<c-u>normal! f(vi(<cr>
