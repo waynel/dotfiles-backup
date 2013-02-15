@@ -9,7 +9,7 @@ nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
 "Split stuff
 nmap <leader>v :vsp<cr>
 map <leader>h :sp<cr>
-map <leader>H :botright sp<cr
+map <leader>H :botright sp<cr>
 map <leader>V :botright vsp<cr>
 
 "Highlight current line
