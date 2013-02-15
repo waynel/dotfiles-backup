@@ -6,10 +6,15 @@ let mapleader = ','
 nmap ; :
 nmap <silent> \ :NERDTreeToggle<cr>
 nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
+"Split stuff
 nmap <leader>v :vsp<cr>
 map <leader>h :sp<cr>
 map <leader>H :botright sp<cr
 map <leader>V :botright vsp<cr>
+
+"Highlight current line
+:nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
+
 nmap <leader>rv :source $MYVIMRC<cr>
 nmap <leader>rs :call ReloadAllSnippets()<cr>
 nmap <leader>u :GundoToggle<cr>
