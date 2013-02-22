@@ -1,19 +1,31 @@
+" LEADER LETTERS AVAILABLE
+" bcdehijklmnopqstxyz
+" r = reload
 " Normal mode
 " ===========
 
 let mapleader = ','
 
+"General
 nmap ; :
 nmap <silent> \ :NERDTreeToggle<cr>
 nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
+
+"Color Scheme Shortcuts
+nmap <leader>csl :colorscheme Tomorrow<cr>
+nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
 "Split stuff
-nmap <leader>v :vsp<cr>
-map <leader>h :sp<cr>
-map <leader>H :botright sp<cr>
-map <leader>V :botright vsp<cr>
+nmap <leader>v :vnew<cr>
+map <leader>h :new<cr>
+map <leader>H :botright new<cr>
+map <leader>V :botright vnew<cr>
 
 "Highlight current line
 :nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
+
+"Numbers binidngs
+nnoremap <F3> :NumbersToggle<cr>
+nnoremap <F4> :NumbersOnOff<cr>
 
 nmap <leader>rv :source $MYVIMRC<cr>
 nmap <leader>rs :call ReloadAllSnippets()<cr>
@@ -30,7 +42,12 @@ nmap <leader>4 :set foldlevel=4<cr>
 nmap <c-n> :NumbersToggle<cr>
 nmap <leader><leader> :ZoomWin<cr>
 nmap - dd
-map <silent> <leader>g :Gblame<cr>
+
+"Git Stuff
+map <silent> <leader>gb :Gblame<cr>
+map <silent> <leader>gc :Gcommit<cr>
+map <silent> <leader>gs :Gstatus<cr>
+
 map <silent> <leader>/ :call NERDComment(1, 'toggle')<cr>
 map Y y$
 
