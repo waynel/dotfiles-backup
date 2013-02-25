@@ -36,3 +36,7 @@ nnoremap <silent> <space> :nohlsearch<Bar>:echo<cr>""
 
 set noswapfile
 set nobackup
+
+"Winheight
+set winheight=47
+set winminheight=8

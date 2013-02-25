@@ -73,8 +73,13 @@ omap il" :<c-u>normal! F"vi"<cr>
 " ===========
 
 " Quick move to normal mode
-imap kj <esc>
+imap kj <esc>l
 
 " Copy current file path
 map <silent> <D-C> :let @* = expand("%")<CR>:echo "Copied: ".expand("%")<CR>
 map <leader>C :let @* = expand("%").":".line(".")<CR>:echo "Copied: ".expand("%").":".line(".")<CR>
+
+"resize windows
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+

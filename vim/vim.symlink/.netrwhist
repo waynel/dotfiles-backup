@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/rich/workspace/pos.rb'
 let g:netrw_dirhist_2='/Users/rich/Code/JS/Backbone/MusicPlayer'
 let g:netrw_dirhist_3='/Users/rich/workspace/pos.rb'
 let g:netrw_dirhist_4='/Users/rich/Documents/MBA/Marketing/notes'
 let g:netrw_dirhist_5='/Users/rich/workspace/exchange'
 let g:netrw_dirhist_6='/Users/rich/workspace/pos.rb'
+let g:netrw_dirhist_7='/Users/rich/dotfiles/zsh'

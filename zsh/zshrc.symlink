@@ -1,5 +1,4 @@
-export CODE=~/code
-export ZSH=$CODE/dotfiles
+export ZSH=~/dotfiles
 
 export PATH=/usr/local/bin:$HOME/.bin:$PATH
 
@@ -11,3 +10,4 @@ compinit
 for config_file ($ZSH/**/completion.zsh) source $config_file
 
 [ -e ~/.localrc ] && source ~/.localrc
+
