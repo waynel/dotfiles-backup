@@ -20,8 +20,8 @@ set splitright
 set splitbelow
 set autoread
 set shell=/bin/sh
-
 set autowriteall
+"save on blur
 autocmd BufLeave,FocusLost * silent! wall
 
 " Tabs are 2 literal spaces
@@ -38,5 +38,6 @@ set noswapfile
 set nobackup
 
 "Winheight
-set winheight=47
+set winheight=8
 set winminheight=8
+set winheight=999

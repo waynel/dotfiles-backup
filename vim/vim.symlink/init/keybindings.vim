@@ -1,16 +1,11 @@
-" LEADER LETTERS AVAILABLE
-" bcdehijklmnopqstxyz
-" r = reload
-" Normal mode
-" ===========
-
 let mapleader = ','
 
 "General
 nmap ; :
 nmap <silent> \ :NERDTreeToggle<cr>
+"Command T
+nmap <leader>F :vnew<cr>:CommandTFlush<cr>:CommandT<cr>
 nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
-
 "Color Scheme Shortcuts
 nmap <leader>csl :colorscheme Tomorrow<cr>
 nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
@@ -19,13 +14,12 @@ nmap <leader>v :vnew<cr>
 map <leader>h :new<cr>
 map <leader>H :botright new<cr>
 map <leader>V :botright vnew<cr>
-
+"Title Bar
+nmap <leader>t :set title titlestring=
 "Highlight current line
-:nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
+nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
 
 "Numbers binidngs
-nnoremap <F3> :NumbersToggle<cr>
-nnoremap <F4> :NumbersOnOff<cr>
 
 nmap <leader>rv :source $MYVIMRC<cr>
 nmap <leader>rs :call ReloadAllSnippets()<cr>
@@ -60,8 +54,8 @@ nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-l> <c-w>l
 
-"nmap <leader>s :%s/
-"vmap <leader>s :s/
+nmap <leader>s :%s/
+vmap <leader>s :s/
 vmap <silent> <leader>a y:Ack<space><c-r>"<cr>
 
 omap in( :<c-u>normal! f(vi(<cr>
@@ -82,4 +76,6 @@ map <leader>C :let @* = expand("%").":".line(".")<CR>:echo "Copied: ".expand("%"
 "resize windows
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
+
 
