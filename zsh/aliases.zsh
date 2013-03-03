@@ -1,14 +1,12 @@
 #General Stuff
   alias ..="cd .."
   alias ...="cd ../.."
-  alias ls="ls -Ghl"
+  alias ls="ls -Ghla"
 #META
   alias reload!='source $HOME/.zshrc'
 #Join the dots
   alias df='cd ~/dotfiles/'
-  alias dfvim='cd ~/dotfiles/vim/vim.symlink'
-  alias dfzsh='cd ~/dotfiles/zsh'
-  alias dfv='vim ~/dotfiles'
+  alias dfv='cd ~/dotfiles/; vim ~/dotfiles'
 #Personal Stuff
   alias docs='cd ~/Documents'  
 #Ticket Evo Stuff
