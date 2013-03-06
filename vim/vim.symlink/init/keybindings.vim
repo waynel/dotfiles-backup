@@ -1,7 +1,7 @@
 let mapleader = ','
 
 "General
-nmap ; :
+map ; :
 nmap <silent> \ :NERDTreeToggle<cr>
 "Command T
 nmap <leader>F :vnew<cr>:CommandTFlush<cr>:CommandT<cr>
