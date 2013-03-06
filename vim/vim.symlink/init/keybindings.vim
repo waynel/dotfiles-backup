@@ -42,9 +42,10 @@ map <silent> <leader>gb :Gblame<cr>
 map <silent> <leader>gc :Gcommit<cr>
 map <silent> <leader>gs :Gstatus<cr>
 map <silent> <leader>gd :Gdiff<cr>
-"Diff Stuff
-map <leader> dp :diffput<cr>:diffupdate<cr>
-map <leader> dg :diffget<cr>:diffupdate<cr>
+"Diff Stuff (G instead of because its too dangerous to delete by mistake
+map <leader> ga :diffput<cr>:diffupdate<cr>
+map <leader> gr :diffget<cr>:diffupdate<cr>
+
 map <silent> <leader>/ :call NERDComment(1, 'toggle')<cr>
 map Y y$
 
