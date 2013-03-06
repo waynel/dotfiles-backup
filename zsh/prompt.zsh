@@ -1,27 +1,34 @@
-autoload colors && colors
-setopt prompt_subst
+function precmd {
+    local TERMWIDTH
+    (( TERMWIDTH = ${COLUMNS} - 3 ))
 
-git_branch () {
-  ref=$(/usr/bin/git symbolic-ref HEAD 2> /dev/null | awk -F/ {'print $NF'})
-  if [[ $ref == "" ]]; then
-    echo ""
-  else
-    echo " %{$fg[cyan]%}git: { %{$fg[red]%}$ref%{$reset_color%}%{$fg[cyan]%} }%{$reset_color%}"
-  fi
-}
-
-git_dirty () {
-  st=$(/usr/bin/git status 2> /dev/null | tail -n 1)
-  if [[ $st == "" ]]; then
-    echo ""
-  else
-    if [[ $st == "nothing to commit (working directory clean)" ]]; then
-      echo %{$fg[green]%} ✓%{$reset_color%}
+    PR_FILLBAR=""
+    PR_PWDLEN=""
+    
+    local pwdsize=${#${(%):-%~}}
+    local size="$(($TERMWIDTH - ($pwdsize + 3)))"
+    if [[ "$pwdsize" -gt $TERMWIDTH ]]; then
+      ((PR_PWDLEN=$TERMWIDTH))
     else
-      echo %{$fg[red]%} ✗%{$reset_color%}
+        PR_FILLBAR=${(l.$size..―.)}
+        if [[ "$TERM" == "linux" ]]; then
+            PR_FILLBAR="\${(l.(($TERMWIDTH - ($pwdsize - 3 + 3 )))..${PR_HBAR}.)}"
+                if [[ "$TERM" == "linux" ]]; then
+                    PR_FILLBAR="\${(l.(($TERMWIDTH - ($pwdsize + 3 )))..${PR_HBAR}.)}"
+                fi
+        fi
     fi
-  fi
-}
 
-export PROMPT='%{$fg_bold[red]%}➜  %{$reset_color%}%{$fg[blue]%}%c%{$reset_color%}$(git_branch)$(git_dirty) '
+}
+ruby_version() {
+  echo " $(ruby -v | awk '{print $2}')"
+}
+local conditional_prompt="%(?,%{$fg[231]%}❯%{$reset_color%},%{$fg[red]%}❯%{$reset_color%})"
+local pwd="%{%F{green}%}%~"
+local right=$'%{%F{238}%}$(ruby_version)%{%f%}$(git_cwd_info)%{%E%}'
+local top='${pwd}%{%F{black}%}${PR_FILLBAR}%{%f%}'
+
+export PROMPT="${top}
+${conditional_prompt} "
+export RPROMPT="${right}"
 
