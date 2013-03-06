@@ -8,7 +8,7 @@ nmap <leader>F :vnew<cr>:CommandTFlush<cr>:CommandT<cr>
 nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
 "Color Scheme Shortcuts
 nmap <leader>csl :colorscheme Tomorrow<cr>
-nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
+nmap <leader>csd :colorscheme Tomorrow-Morning<cr>
 "Split stuff
 nmap <leader>v :vnew<cr>
 map <leader>h :new<cr>
@@ -42,9 +42,6 @@ map <silent> <leader>gb :Gblame<cr>
 map <silent> <leader>gc :Gcommit<cr>
 map <silent> <leader>gs :Gstatus<cr>
 map <silent> <leader>gd :Gdiff<cr>
-"Diff Stuff (G instead of because its too dangerous to delete by mistake
-map <leader> ga :diffput<cr>:diffupdate<cr>
-map <leader> gr :diffget<cr>:diffupdate<cr>
 
 map <silent> <leader>/ :call NERDComment(1, 'toggle')<cr>
 map Y y$
