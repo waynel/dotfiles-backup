@@ -26,3 +26,6 @@
   editor = "vim"
 [web]
   browser = open
+[user]
+	name = Rich Soni
+	email = rich@ticketevolution.com
