@@ -43,9 +43,8 @@ map <silent> <leader>gc :Gcommit<cr>
 map <silent> <leader>gs :Gstatus<cr>
 map <silent> <leader>gd :Gdiff<cr>
 "Diff Stuff
-map <silent> <leader>dp :diffput<cr>:diffupdate<cr>
-map <silent> <leader>dg :diffget<cr>:diffupdate<cr>
-
+map <leader> dp :diffput<cr>:diffupdate<cr>
+map <leader> dg :diffget<cr>:diffupdate<cr>
 map <silent> <leader>/ :call NERDComment(1, 'toggle')<cr>
 map Y y$
 
