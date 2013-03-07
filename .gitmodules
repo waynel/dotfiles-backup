@@ -61,3 +61,6 @@
 [submodule "vim/vim.symlink/bundle/vim-instant-markdown"]
 	path = vim/vim.symlink/bundle/vim-instant-markdown
 	url = git://github.com/suan/vim-instant-markdown.git
+[submodule "vim-gitgutter"]
+	path = vim-gitgutter
+	url = vim/vim.symlink/bundle/git://github.com/airblade/vim-gitgutter.git
