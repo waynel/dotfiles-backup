@@ -1,6 +1,7 @@
 alias gc='git commit'
 alias gd='git diff'
 alias gs='git status --short'
+alias gsb='git show-branch'
 alias gch='git checkout'
 alias master='git checkout master'
 alias gbr='git checkout -b'

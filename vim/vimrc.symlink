@@ -4,5 +4,6 @@ call pathogen#infect()
 set nocompatible
 syntax on
 filetype plugin indent on
-
+"For man pages to render in vim
+let $PAGER=''
 runtime! init/**.vim

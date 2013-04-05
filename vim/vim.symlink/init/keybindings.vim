@@ -2,7 +2,12 @@ let mapleader = ','
 
 "General
 map ; :
+noremap ;; ;
 nmap <silent> \ :NERDTreeToggle<cr>
+"Hard Mode
+"nnoremap <leader>hm <Esc>:call ToggleHardMode()<CR>
+"Move Lines Up or down like textmate
+
 "Command T
 nmap <leader>F :vnew<cr>:CommandTFlush<cr>:CommandT<cr>
 nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
@@ -19,7 +24,6 @@ nmap <leader>t :set title titlestring=
 "Highlight current line
 nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
 
-"Numbers binidngs
 
 nmap <leader>rv :source $MYVIMRC<cr>
 nmap <leader>rs :call ReloadAllSnippets()<cr>
@@ -33,7 +37,6 @@ nmap <leader>2 :set foldlevel=2<cr>
 nmap <leader>3 :set foldlevel=3<cr>
 nmap <leader>4 :set foldlevel=4<cr>
 
-nmap <c-n> :NumbersToggle<cr>
 nmap <leader><leader> :ZoomWin<cr>
 nmap - dd
 
@@ -77,6 +80,33 @@ map <leader>C :let @* = expand("%").":".line(".")<CR>:echo "Copied: ".expand("%"
 "resize windows
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+"Swap Lines Like TextMate
+function! s:swap_lines(n1, n2)
+    let line1 = getline(a:n1)
+    let line2 = getline(a:n2)
+    call setline(a:n1, line2)
+    call setline(a:n2, line1)
+endfunction
 
+function! s:swap_up()
+    let n = line('.')
+    if n == 1
+        return
+    endif
 
+    call s:swap_lines(n, n - 1)
+    exec n - 1
+endfunction
 
+function! s:swap_down()
+    let n = line('.')
+    if n == line('$')
+        return
+    endif
+
+    call s:swap_lines(n, n + 1)
+    exec n + 1
+endfunction
+
+noremap <silent> <c-k> :call <SID>swap_up()<CR>
+noremap <silent> <c-j> :call <SID>swap_down()<CR>

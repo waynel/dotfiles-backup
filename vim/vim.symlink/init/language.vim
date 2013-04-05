@@ -8,3 +8,5 @@ au BufRead,BufNewFile *.json set filetype=javascript
 
 " EJS as HTML
 au BufRead,BufNewFile *.ejs set filetype=html
+
+au BufRead,BufNewFile *.hamljs set filetype=haml

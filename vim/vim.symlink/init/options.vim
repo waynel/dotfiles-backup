@@ -3,10 +3,10 @@ set list
 set listchars=trail:·
 
 set guifont=Inconsolata:h20
-set guioptions-=T  " Hide gui chrome
-set guioptions-=e  " Use text tabs
+"set guioptions-=T  " Hide gui chrome
+"set guioptions-=e  " Use text tabs
 set wildmode=list:longest
-set guioptions-=rL " No scrollbar
+"set guioptions-=rL " No scrollbar
 set visualbell     " Suppress bell
 set cursorline
 set nowrap
@@ -20,9 +20,10 @@ set splitright
 set splitbelow
 set autoread
 set shell=/bin/sh
-set autowriteall
+"set autowriteall
+"too annoying to use with vagrant
 "save on blur
-autocmd BufLeave,FocusLost * silent! wall
+"autocmd BufLeave,FocusLost * silent! wall
 
 " Tabs are 2 literal spaces
 set tabstop=2
@@ -33,6 +34,8 @@ set expandtab
 " Press space to turn off highlighting
 set hls
 nnoremap <silent> <space> :nohlsearch<Bar>:echo<cr>""
+" Hard Mode
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 set noswapfile
 set nobackup
@@ -41,3 +44,6 @@ set nobackup
 set winheight=8
 set winminheight=8
 set winheight=999
+
+set backspace=2
+
