@@ -13,7 +13,9 @@ nmap <leader>F :vnew<cr>:CommandTFlush<cr>:CommandT<cr>
 nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
 "Color Scheme Shortcuts
 nmap <leader>csl :colorscheme Tomorrow<cr>
-nmap <leader>csd :colorscheme Tomorrow-Morning<cr>
+nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
+nmap <leader>csb :colorscheme Tomorrow-Night-Blue<cr>
+nmap <leader>css :set background=light<cr>:colorscheme solarized<cr>
 "Split stuff
 nmap <leader>v :vnew<cr>
 map <leader>h :new<cr>

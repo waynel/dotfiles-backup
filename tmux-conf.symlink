@@ -3,3 +3,7 @@ set -g prefix C-w
 #bind C-w Cw to type C-w
 bind C-w send-prefix
 unbind C-b
+#split pane rebind
+unbind %
+bind | split-window -h
+bind - split-window -v
