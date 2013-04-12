@@ -1,5 +1,4 @@
 #!/bin/zsh
-
 autoload colors && colors
 
 echo "\n$fg[green]Installing...$reset_color"
@@ -56,6 +55,23 @@ for symlink (./**/*.symlink) {
   fi
 }
 
+echo "$fg[green]Done!\n$reset_color"
+
+echo "$fg[green]Cloning vundle...\n$reset_color"
+mkdir vim/vim.symlink/bundle 2> /dev/null
+git clone git://github.com/gmarik/vundle.git vim/vim.symlink/bundle/vundle 2> /dev/null
+echo "$fg[green]Done!\n$reset_color"
+
+echo "$fg[green]Installing bundles with Vundle. Press return to begin install.\n$reset_color"
+vim +BundleInstall +qall 2> /dev/null
+echo "$fg[green]Done!\n$reset_color"
+
+echo "$fg[green]Setting up Command-T...\n$reset_color"
+cd ./vim/vim.symlink/bundle/Command-T/ruby/command-t
+/usr/bin/ruby extconf.rb >> /dev/null
+make >> /dev/null
+sudo make install >> /dev/null
+cd ../../../../../..
 echo "$fg[green]Done!\n$reset_color"
 
 exit 0
