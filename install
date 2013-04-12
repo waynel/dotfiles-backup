@@ -42,7 +42,7 @@ make_link () {
 # or prompting for instructions when necessary
 for symlink (./**/*.symlink) {
   link_to_path="$(pwd)$(echo $symlink | sed 's/\.//')"
-  link_from_path="$HOME/.$(basename $symlink | awk -F. '{ print $1 }')"
+  link_from_path="$HOME/.$(basename $symlink | awk -F.symlink '{ print $1 }')"
 
   if [ $link_all ]; then
     make_link $link_to_path $link_from_path
