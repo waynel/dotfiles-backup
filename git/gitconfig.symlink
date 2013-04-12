@@ -24,12 +24,13 @@
 [core]
 	excludesfile = /Users/rich/.gitignore_global
   editor = "vim"
+[diff]
+  tool = vimdiff
 [web]
   browser = open
 [user]
 	name = Rich Soni
 	email = rich@ticketevolution.com
-[difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]

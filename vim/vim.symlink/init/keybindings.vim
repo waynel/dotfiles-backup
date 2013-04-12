@@ -8,9 +8,6 @@ nmap <silent> \ :NERDTreeToggle<cr>
 "nnoremap <leader>hm <Esc>:call ToggleHardMode()<CR>
 "Move Lines Up or down like textmate
 
-"Command T
-nmap <leader>F :vnew<cr>:CommandTFlush<cr>:CommandT<cr>
-nmap <leader>f :CommandTFlush<cr>:CommandT<cr>
 "Color Scheme Shortcuts
 nmap <leader>csl :colorscheme Tomorrow<cr>
 nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
