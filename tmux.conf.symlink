@@ -32,7 +32,7 @@
   #for copy mode
     setw -g mode-keys vi
     bind Escape copy-mode #just for usability
-    bind C-q Escape copy-mode #fast enter
+    bind C-q copy-mode #fast enter
     bind p paste-buffer
     bind -t vi-copy 'v' begin-selection
     bind -t vi-copy 'y' copy-selection
