@@ -13,6 +13,8 @@ nmap <leader>csl :colorscheme Tomorrow<cr>
 nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
 nmap <leader>csb :colorscheme Tomorrow-Night-Blue<cr>
 nmap <leader>css :set background=light<cr>:colorscheme solarized<cr>
+"Ctrl-P
+nmap <leader>f :CtrlP<cr>
 "Split stuff
 nmap <leader>v :vnew<cr>
 map <leader>h :new<cr>

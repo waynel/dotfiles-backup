@@ -2,7 +2,6 @@
   alias ..="cd .."
   alias ...="cd ../.."
   alias ls="ls -Ghla"
-  alias vim="rename_tab_pipe pwd; vim"
   alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 #META
   alias reload!='source $HOME/.zshrc'
@@ -58,4 +57,3 @@
   alias ec='e; rename_tab "Exchange Console"; ds - rails console'
   alias edb='e; rename_tab "Exchange DB"; ds - rails dbconsole'
   alias pos='p; rename_tab "Server:POS"; cd ~/workspace/pos.rb/; ds - start'
-  alias omglog='rename_tab "omglog"; omglog'

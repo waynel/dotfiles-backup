@@ -29,7 +29,7 @@ set shell=/bin/sh
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
+set mouse=a "use mouse in terminal mode
 " Set search highlighting,
 " Press space to turn off highlighting
 set hls
@@ -41,9 +41,9 @@ set noswapfile
 set nobackup
 
 "Winheight
-set winheight=8
-set winminheight=8
-set winheight=999
+"set winheight=8
+"set winminheight=8
+"set winheight=999
 
 set backspace=2
 
