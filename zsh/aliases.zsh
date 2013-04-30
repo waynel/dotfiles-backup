@@ -32,6 +32,15 @@
     sed -i".bak" "$1d" ~/Documents/TodoLists/work_todo.txt;
     wtodo;
   }
+  alias ttodo='cat -n ~/Documents/TodoLists/temp_todo.txt'
+  ttodo.(){
+    echo "$1" >> ~/Documents/TodoLists/temp_todo.txt;
+    ttodo;
+  } 
+  .ttodo(){
+    sed -i".bak" "$1d" ~/Documents/TodoLists/temp_todo.txt;
+    ttodo;
+  }
 #rename tab
   rename_tab(){
     echo -en "\033]0;$1\a"

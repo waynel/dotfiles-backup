@@ -25,6 +25,9 @@ set shell=/bin/sh
 "save on blur
 "autocmd BufLeave,FocusLost * silent! wall
 
+"Spell Checking
+nmap <silent> <leader>s :set spell!<CR>
+
 " Tabs are 2 literal spaces
 set tabstop=2
 set shiftwidth=2

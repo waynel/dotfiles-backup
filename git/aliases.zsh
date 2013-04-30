@@ -1,5 +1,6 @@
 #standard
   alias gcl='git checkout - '
+  alias gcm='git checkout master '
   alias gc='git commit'
   alias gd='git diff'
   alias gs='git status --short'

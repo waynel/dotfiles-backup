@@ -1,10 +1,15 @@
 # act like GNU screen
   set -g prefix C-a
   bind C-a send-prefix
+#clear scree
+ bind -n C-k send-keys -R \; clear-history
+#switch sessions
+  bind -r ( switch-client -p
+  bind -r ) switch-client -n
 #source file
   bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
 # act more responsively
-  set -g escape-time 1
+  set -g escape-time 0
 # clipboard hack for os x
   set -g default-command "reattach-to-user-namespace -l /bin/zsh"
   bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
