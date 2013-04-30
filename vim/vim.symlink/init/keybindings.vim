@@ -2,7 +2,7 @@
   let mapleader = ','
   map ; :
   noremap ;; ;
-  map Y y$
+  map Y "+y
 " Quick move to normal mode
   imap kj <esc>l
 "Reload
