@@ -41,6 +41,8 @@
     sed -i".bak" "$1d" ~/Documents/TodoLists/temp_todo.txt;
     ttodo;
   }
+  alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+  alias remote_canary='canary --remote-debugging-port=9222'
 #rename tab
   rename_tab(){
     echo -en "\033]0;$1\a"
@@ -51,6 +53,8 @@
   }
   alias tabname='rename_tab_pipe pwd'
 #Ticket Evo Stuff
+  alias temux='~/dotfiles/tmux_sessions/temux'
+  alias retemux='tmux kill-session -t temux;ds restart;temux'
   alias tegem='cd ~/workspace/ticketevolution-ruby; rename_tab "TE GEM"'
   alias teex='cd ~/workspace/pos-chrome-extension/Robotester/tests/; rename_tab "TE GEM"'
   alias tedocs='cd ~/Documents/TicketEvolution'
@@ -62,9 +66,8 @@
   alias pa='cd ~/workspace/pos.rb/app/assets; rename_tab "POS"'
   alias pb='cd ~/workspace/pos.rb/app/assets/javascripts/backbone/; rename_tab "POS"'
   alias pt='cd ~/workspace/pos.rb/app/assets/templates/; rename_tab "POS"'
-  alias es='e; rename_tab "Server:Exchange";cd ~/workspace/exchange; ds - startc'
-  alias ec='e; rename_tab "Exchange Console"; ds - rails console'
-  alias edb='e; rename_tab "Exchange DB"; ds - rails dbconsole'
-  alias pos='p; rename_tab "Server:POS"; cd ~/workspace/pos.rb/; ds - start'
 #Rails Shortcuts
   alias rrg='rake routes | grep'
+#vlc
+  alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -cvlc'
+  alias vlci='/Applications/VLC.app/Contents/MacOS/VLC -I rc'

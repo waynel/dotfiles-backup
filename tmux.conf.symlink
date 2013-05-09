@@ -1,8 +1,8 @@
 # act like GNU screen
   set -g prefix C-a
   bind C-a send-prefix
+  bind C-k send-keys -R \; clear-history
 #clear scree
- bind -n C-k send-keys -R \; clear-history
 #switch sessions
   bind -r ( switch-client -p
   bind -r ) switch-client -n

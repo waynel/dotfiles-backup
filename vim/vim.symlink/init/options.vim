@@ -8,9 +8,10 @@ set guifont=Inconsolata:h20
 set wildmode=list:longest
 "set guioptions-=rL " No scrollbar
 set visualbell     " Suppress bell
-set cursorline
+set nocursorline   "slow in terminal
 set nowrap
 set number
+let g:ruby_path = system('rvm current')
 set ignorecase
 set foldmethod=syntax
 set nofoldenable
@@ -19,6 +20,7 @@ set incsearch
 set splitright
 set splitbelow
 set autoread
+set ttyfast
 set shell=/bin/sh
 "set autowriteall
 "too annoying to use with vagrant

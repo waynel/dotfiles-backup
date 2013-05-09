@@ -3,8 +3,10 @@
   map ; :
   noremap ;; ;
   map Y "+y
-" Quick move to normal mode
-  imap kj <esc>l
+" run scrap ruby
+  nmap <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
+" Quick move to normal mode This is a bad habit
+  "imap kj <esc>l
 "Reload
   nmap <leader>rv :source $MYVIMRC<cr>
   nmap <leader>rs :call ReloadAllSnippets()<cr>
@@ -23,6 +25,8 @@
   nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 "Title Bar
   nmap <leader>t :set title titlestring=
+"Pretty JSON
+  nmap <silent><leader>j :%!python -m json.tool<CR>
 "?????
   omap in( :<c-u>normal! f(vi(<cr>
   omap in" :<c-u>normal! f"vi"<cr>
@@ -34,6 +38,7 @@
 "Color Scheme Shortcuts
   nmap <leader>csl :colorscheme Tomorrow<cr>
   nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
+  nmap <leader>csi :colorscheme Tomorrow-Night-Bright<cr>
   nmap <leader>csb :colorscheme Tomorrow-Night-Blue<cr>
   nmap <leader>css :set background=light<cr>:colorscheme solarized<cr>
 "Swap Lines Like TextMate
@@ -83,3 +88,15 @@
     map <silent> <leader>gs :Gstatus<cr>
     map <silent> <leader>gd :Gdiff<cr>
     map <silent> <leader>gh :Gbrowse<cr>
+  "Vimux Stuff
+    "this is just annoying
+      map <silent><leader>r :<cr>
+    "prompt for a command to run
+      map <leader>rp  :PromptVimTmuxCommand<cr>
+      map <leader>rl  :w<cr>:RunLastVimTmuxCommand<cr>
+      map <leader>ri  :InspectVimTmuxRunner<cr>
+      "Stupid"map <lea:w;der>rx :CloseVimTmuxPanes<cr>
+      map <leader>rs  :w<cr>:InterruptVimTmuxRunner<cr>
+      map <leader>rtf :w<cr>:RunRubyFocusedTest<cr>
+      map <leader>rtc :w<cr>:RunRubyFocusedContext<cr>
+      map <leader>rta :w<cr>:RunAllRubyTests<cr>

@@ -16,3 +16,10 @@
 #cooked up
   alias gsnap='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
   alias gbad='git status --short | grep --color=always " M\|UU\|AA"'
+  gstash(){
+    case $1 in
+      "ls") git stash show stash@{$2};;
+      "pop") git stash pop stash@{$2};;
+      "checkout") git checkout stash@{$2} -- $3;;
+    esac
+  }
