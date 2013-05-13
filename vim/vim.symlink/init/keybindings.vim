@@ -3,6 +3,11 @@
   map ; :
   noremap ;; ;
   map Y "+y
+" save
+  map <leader>ss :mksession! ~/.vim/sessions/last.vim<cr>
+  map <leader>SS :mksession! ~/.vim/sessions/
+  map <leader>oo :source ~/.vim/sessions/last.vim<cr>
+  map <leader>OO :source ~/.vim/sessions/
 " run scrap ruby
   nmap <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
 " Quick move to normal mode This is a bad habit
@@ -92,11 +97,11 @@
     "this is just annoying
       map <silent><leader>r :<cr>
     "prompt for a command to run
-      map <leader>rp  :PromptVimTmuxCommand<cr>
-      map <leader>rl  :w<cr>:RunLastVimTmuxCommand<cr>
-      map <leader>ri  :InspectVimTmuxRunner<cr>
-      "Stupid"map <lea:w;der>rx :CloseVimTmuxPanes<cr>
-      map <leader>rs  :w<cr>:InterruptVimTmuxRunner<cr>
+      map <leader>rp  :VimuxPromptCommand<cr>
+      map <leader>rl  :Vimuxw<cr>:RunLastCommand<cr>
+      map <leader>ri  :VimuxInspectRunner<cr>
+      map <leader>rx  :VimuxCloseRunner<cr>
+      map <leader>rs  :w<cr>:VimuxInterruptRunner<cr>
       map <leader>rtf :w<cr>:RunRubyFocusedTest<cr>
       map <leader>rtc :w<cr>:RunRubyFocusedContext<cr>
       map <leader>rta :w<cr>:RunAllRubyTests<cr>

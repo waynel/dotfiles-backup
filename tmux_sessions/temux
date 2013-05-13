@@ -3,46 +3,44 @@ if [ $? != 0 ]
 then
   tmux new-session -s temux -n exch -d
   #create splits, and windows
-    #exchange
-      tmux send-keys -t temux 'cd ~/workspace/exchange/' C-m C-l
-      tmux split-window -h -p 61 -t temux
-      tmux send-keys -t temux:1.2 'cd ~/workspace/exchange/' C-m C-l
-      tmux split-window -v -p 30 -t temux
-      tmux send-keys -t temux:1.3 'cd ~/workspace/exchange/' C-m C-l
-    #pos
-      tmux new-window -n pos -t temux
-      tmux send-keys -t temux:2.1 'cd ~/workspace/pos.rb/' C-m C-l
-      tmux split-window -h -p 70 -t temux
-      tmux send-keys -t temux:2.2 'cd ~/workspace/pos.rb/' C-m C-l
-      tmux split-window -v -p 30 -t temux
-      tmux send-keys -t temux:2.3 'cd ~/workspace/pos.rb/' C-m C-l
+      # first window
+        tmux split-window -p 80 -h -t temux
+        tmux select-pane -t temux:1.1
+        tmux split-window -p 85 -v -t temux
+        tmux select-pane -t temux:1.3
+        tmux split-window -p 20 -h -t temux
+        tmux split-window -p 85 -v -t temux
     #git
       tmux new-window -n git -t temux
-      tmux send-keys -t temux:3.1 'cd ~/workspace/exchange/' C-m
+      tmux send-keys -t temux:2.1 'cd ~/workspace/exchange/' C-m
       tmux split-window -h -p 66 -t temux
-      tmux send-keys -t temux:3.2 'cd ~/workspace/pos.rb/' C-m C-l
+      tmux send-keys -t temux:2.2 'cd ~/workspace/pos.rb/' C-m C-l
       tmux split-window -h -p 34 -t temux
-      tmux send-keys -t temux:3.3 'cd ~/workspace/pos.rb/' C-m C-l
+      tmux send-keys -t temux:2.3 'cd ~/workspace/pos.rb/' C-m C-l
     #db
       tmux new-window -n db -t temux
-      tmux send-keys -t temux:4.1 'cd ~/workspace/exchange/' C-m C-l
+      tmux send-keys -t temux:3.1 'cd ~/workspace/exchange/' C-m C-l
       tmux split-window -h -t temux
-      tmux send-keys -t temux:4.1 'cd ~/workspace/exchange/' C-m C-l
+      tmux send-keys -t temux:3.1 'cd ~/workspace/exchange/' C-m C-l
   #execute commands (right now needs ds start to run)
-    #exchange
-      tmux send-keys -t temux:1.1 'ds - startc' C-m C-l
-      tmux send-keys -t temux:1.2 'vim' C-m C-l
-      tmux send-keys -t temux:1.3 'ds - rails c' C-m C-l
-    #pos
-      tmux send-keys -t temux:2.1 'ds - start' C-m
-      tmux send-keys -t temux:2.2 'vim' C-m
-      tmux send-keys -t temux:2.3 'ds - rails c' C-m C-l
+   # first window
+      tmux send-keys -t temux:1.1 'cd ~/workspace/exchange/' C-m
+      tmux send-keys -t temux:1.1 'ds - rails c' C-m C-l
+      tmux send-keys -t temux:1.2 'cd ~/workspace/exchange' C-m C-l
+      tmux send-keys -t temux:1.2 'ds - startc' C-m
+      tmux send-keys -t temux:1.3 'cd ~/workspace/' C-m C-l
+      tmux send-keys -t temux:1.3 'vi exchange pos.rb' C-m
+      tmux send-keys -t temux:1.4 'cd ~/workspace/pos.rb' C-m C-l
+      tmux send-keys -t temux:1.4 'rails c' C-m C-l
+      tmux send-keys -t temux:1.5 'cd ~/workspace/pos.rb' C-m C-l
+      tmux send-keys -t temux:1.5 'rails s -p 5555' C-m
     #git
-      tmux send-keys -t temux:3.1 C-l 'gs' C-m
-      tmux send-keys -t temux:3.2 C-l 'gs' C-m
-      tmux send-keys -t temux:3.3 'ds - omglog' C-m
+      tmux send-keys -t temux:2.1 C-l 'gs' C-m
+      tmux send-keys -t temux:2.2 C-l 'gs' C-m
+      tmux send-keys -t temux:2.3 'ds - omglog' C-m
     #db
-      tmux send-keys -t temux:4.1 'ds - rails dbconsole' C-m C-l
-      tmux send-keys -t temux:4.2 'vim' C-m
+      tmux send-keys -t temux:3.1 'ds - rails dbconsole' C-m C-l
+      tmux send-keys -t temux:3.2 'vim' C-m
 fi
+tmux select-pane -t temux:1.3
 tmux attach -t temux
