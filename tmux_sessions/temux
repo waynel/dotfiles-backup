@@ -28,8 +28,8 @@ then
       tmux send-keys -t temux:1.1 'ds - rails c' C-m C-l
       tmux send-keys -t temux:1.2 'cd ~/workspace/exchange' C-m C-l
       tmux send-keys -t temux:1.2 'ds - startc' C-m
-      tmux send-keys -t temux:1.3 'cd ~/workspace/' C-m C-l
-      tmux send-keys -t temux:1.3 'vi exchange pos.rb' C-m
+      tmux send-keys -t temux:1.3 'cd ~/workspace/pos.rb' C-m C-l
+      tmux send-keys -t temux:1.3 'vi . ../exchange' C-m
       tmux send-keys -t temux:1.4 'cd ~/workspace/pos.rb' C-m C-l
       tmux send-keys -t temux:1.4 'rails c' C-m C-l
       tmux send-keys -t temux:1.5 'cd ~/workspace/pos.rb' C-m C-l

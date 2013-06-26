@@ -3,6 +3,12 @@
   map ; :
   noremap ;; ;
   map Y "+y
+  "Search Selected Text
+    vmap * y/<c-r>"<cr>
+  "colors
+    nmap <leader>sfj :setf javascript<cr>
+    nmap <leader>sfr :setf ruby<cr>
+    nmap <leader>sfh :setf ham<cr>
 " save
   map <leader>ss :mksession! ~/.vim/sessions/last.vim<cr>
   map <leader>SS :mksession! ~/.vim/sessions/
@@ -45,7 +51,7 @@
   nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
   nmap <leader>csi :colorscheme Tomorrow-Night-Bright<cr>
   nmap <leader>csb :colorscheme Tomorrow-Night-Blue<cr>
-  nmap <leader>css :set background=light<cr>:colorscheme solarized<cr>
+  nmap <leader>css :set background=dark<cr>:colorscheme solarized<cr>
 "Swap Lines Like TextMate
   function! s:swap_lines(n1, n2)
       let line1 = getline(a:n1)
@@ -83,8 +89,10 @@
   "Gundo
     nmap <leader>u :GundoToggle<cr>
   "Ag
-    nmap <leader>a :Ag!<space>
+    nmap <leader>a :Ag! -QS<space>
+    nmap <leader>A :AgFromSearch -QS<cr>
     vmap <silent> <leader>a y:Ag!<space><c-r>"<cr>
+    vmap <silent> <leader>A y:AgFile<space><c-r>"<cr>
   "Zoomwin
     nmap <leader><leader> :ZoomWin<cr>
   "Git Stuff
@@ -93,15 +101,21 @@
     map <silent> <leader>gs :Gstatus<cr>
     map <silent> <leader>gd :Gdiff<cr>
     map <silent> <leader>gh :Gbrowse<cr>
+    map <silent> <leader>ge :Gedit<cr>
+    map <silent> <leader>gl :Glog<cr>
   "Vimux Stuff
     "this is just annoying
       map <silent><leader>r :<cr>
     "prompt for a command to run
       map <leader>rp  :VimuxPromptCommand<cr>
-      map <leader>rl  :Vimuxw<cr>:RunLastCommand<cr>
+      map <leader>rl  :VimuxRunLastCommand<cr>
       map <leader>ri  :VimuxInspectRunner<cr>
       map <leader>rx  :VimuxCloseRunner<cr>
-      map <leader>rs  :w<cr>:VimuxInterruptRunner<cr>
+"      map <leader>rs  :w<cr>:VimuxInterruptRunner<cr>
       map <leader>rtf :w<cr>:RunRubyFocusedTest<cr>
       map <leader>rtc :w<cr>:RunRubyFocusedContext<cr>
       map <leader>rta :w<cr>:RunAllRubyTests<cr>
+ "Coffee Stuff
+      map <silent><leader>cc  :CoffeeCompile vert<cr>
+      map <silent><leader>cr  :CoffeeRun<cr>
+      map <silent><leader>cp  :! coffee --compile %:p<cr>

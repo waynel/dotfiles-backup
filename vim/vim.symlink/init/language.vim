@@ -5,7 +5,9 @@ au BufRead,BufNewFile Vagrantfile set filetype=ruby
 
 " JSON as Javascript
 au BufRead,BufNewFile *.json set filetype=javascript
-au BufRead,BufNewFile *.rjson set filetype=javascript
+au BufRead,BufNewFile *.rjson set filetype=ruby
+"LESS
+au BufRead,BufNewFile *.less set filetype=css
 
 " EJS as HTML
 au BufRead,BufNewFile *.ejs set filetype=html

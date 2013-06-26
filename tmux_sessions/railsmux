@@ -1,0 +1,20 @@
+pwd=`pwd`
+cd $pwd
+if [$1]; then
+  name=$1
+else
+  name=`pwd | sed 's#.*/##'`
+fi
+tmux new-session -s $name -d
+  #create splits, and windows
+      # first window
+        tmux split-window -p 40 -h -t $name
+        tmux select-pane -t $name:1.1
+  #execute commands (right now needs ds start to run)
+   # first window
+      tmux send-keys -t $name:1.1 'cd $pwd' C-m
+      tmux send-keys -t $name:1.1 'vi' C-m
+      tmux send-keys -t $name:1.2 'cd $pwd' C-m C-l
+      tmux send-keys -t $name:1.2 'rails server' C-m
+tmux select-pane -t $name:1.1
+tmux attach -t $name

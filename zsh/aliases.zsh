@@ -67,7 +67,10 @@
   alias pb='cd ~/workspace/pos.rb/app/assets/javascripts/backbone/; rename_tab "POS"'
   alias pt='cd ~/workspace/pos.rb/app/assets/templates/; rename_tab "POS"'
 #Rails Shortcuts
+  alias tmux_rails='~/dotfiles/tmux_sessions/railsmux'
   alias rrg='rake routes | grep'
 #vlc
   alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -cvlc'
   alias vlci='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
+#s3
+  alias coursera-dev='cd ~;ssh -i cs184-rich-dev.pem ubuntu@ec2-54-227-58-234.compute-1.amazonaws.com'

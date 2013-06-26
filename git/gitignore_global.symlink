@@ -2,3 +2,4 @@
 .jhw-cache
 .rvmrc
 .env
+*.coffee

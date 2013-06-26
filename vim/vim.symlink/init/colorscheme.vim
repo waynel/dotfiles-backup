@@ -1,2 +1,2 @@
 set background=dark
-colorscheme Tomorrow-Night-Eighties
+colorscheme Tomorrow-Night-Bright
