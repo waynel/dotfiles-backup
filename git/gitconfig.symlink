@@ -30,7 +30,7 @@
   browser = open
 [user]
 	name = Rich Soni
-	email = rich@ticketevolution.com
+	email = rich@richsoni.com
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
