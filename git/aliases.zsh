@@ -15,8 +15,12 @@
   alias gsl='git stash list'
   alias gpoh='git push origin head'
   alias gpr='git pull --rebase'
+  gfuzz(){
+    echo "The Following Where Caught by The Fuzz:\n";
+    git cherry -v head master | grep "+"
+  }
   gpolice(){
-    echo "The Following Where Caught by The Fuzz"
+    echo "The Following Where Caught by The Fuzz:\n";
     git cherry -v $1 $2 | grep "+"
   }
 #cooked up
