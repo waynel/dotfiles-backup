@@ -15,6 +15,10 @@
   alias gsl='git stash list'
   alias gpoh='git push origin head'
   alias gpr='git pull --rebase'
+  gpolice(){
+    echo "The Following Where Caught by The Fuzz"
+    git cherry -v $1 $2 | grep "+"
+  }
 #cooked up
   alias gsnap='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
   alias gbad='git status --short | grep --color=always " M\|UU\|AA|DU"'
