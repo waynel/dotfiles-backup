@@ -13,6 +13,9 @@
 [submodule "vim/vim.symlink/bundle/tabular"]
 	path = vim/vim.symlink/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule "vim/vim.symlink/bundle/unite.vim"]
+	path = vim/vim.symlink/bundle/unite.vim
+	url = git://github.com/Shougo/unite.vim.git
 [submodule "vim/vim.symlink/bundle/vim-autoclose"]
 	path = vim/vim.symlink/bundle/vim-autoclose
 	url = git://github.com/Townk/vim-autoclose.git

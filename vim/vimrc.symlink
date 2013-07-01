@@ -1,5 +1,6 @@
 filetype off
 call pathogen#infect()
+call pathogen#helptags()
 
 set nocompatible
 syntax on
