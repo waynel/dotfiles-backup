@@ -67,3 +67,9 @@
 [submodule "vim/vim.symlink/bundle/zoomwin"]
 	path = vim/vim.symlink/bundle/zoomwin
 	url = git://github.com/vim-scripts/ZoomWin.git
+[submodule "vim/vim.symlink/bundle/powerline"]
+	path = vim/vim.symlink/bundle/powerline
+	url = https://github.com/Lokaltog/powerline.git
+[submodule "vim/vim.symlink/bundle/vim-airline"]
+	path = vim/vim.symlink/bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git

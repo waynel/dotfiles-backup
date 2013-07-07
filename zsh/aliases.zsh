@@ -1,7 +1,7 @@
 #General Stuff
   alias ..="cd .."
   alias ...="cd ../.."
-  alias ls="ls -Ghla"
+  alias ll="ls -Ghla"
   alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 #META
   alias reload!='source $HOME/.zshrc'
