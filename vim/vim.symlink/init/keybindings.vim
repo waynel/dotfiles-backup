@@ -16,8 +16,6 @@
   map <leader>OO :source ~/.vim/sessions/
 " run scrap ruby
   nmap <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
-" Quick move to normal mode This is a bad habit
-  "imap kj <esc>l
 "Reload
   nmap <leader>rv :source $MYVIMRC<cr>
   nmap <leader>rs :call ReloadAllSnippets()<cr>
@@ -83,7 +81,7 @@
   noremap <silent> <c-j> :call <SID>swap_down()<CR>
 "Plugins
   "Ctrl-P
-"    nmap <leader>f :CtrlP<cr>
+    nmap <leader>f :CtrlP<cr>
   "Tabular
     map  <leader>=  :Tabularize /
   "Gundo
@@ -119,10 +117,3 @@
       map <silent><leader>cc  :CoffeeCompile vert<cr>
       map <silent><leader>cr  :CoffeeRun<cr>
       map <silent><leader>cp  :! coffee --compile %:p<cr>
- "unite
-   "fuzzy open files
-     call unite#filters#matcher_default#use(['matcher_fuzzy'])
-     nmap <leader>f :<C-u>Unite -start-insert file_rec<cr>
-   "yank history
-      let g:unite_source_history_yank_enable = 1
-      nnoremap <leader>y :<C-u>Unite history/yank<CR>
