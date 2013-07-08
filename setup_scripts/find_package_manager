@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 managers=(yum apt-get brew)
 FOUND_MANAGER=false
 for manager in ${managers[*]}
