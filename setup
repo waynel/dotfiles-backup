@@ -1,0 +1,3 @@
+PACKAGE_MANAGER=`./setup_scripts/find_package_manager`
+$PACKAGE_MANAGER install vim
+$PACKAGE_MANAGER install tmux
