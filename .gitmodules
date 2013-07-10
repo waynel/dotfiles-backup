@@ -1,5 +1,5 @@
-[submodule "vim/vim.symlink/bundle/unite-tmux"]
-	path = vim/vim.symlink/bundle/unite-tmux
+[submodule "vim/vim.symlink/bundle/unite.vim"]
+	path = vim/vim.symlink/bundle/unite.vim
 	url = git://github.com/Shougo/unite.vim
 [submodule "vim/vim.symlink/bundle/unite-tmux"]
 	path = vim/vim.symlink/bundle/unite-tmux
