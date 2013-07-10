@@ -1,3 +1,9 @@
+[submodule "vim/vim.symlink/bundle/unite-tmux"]
+	path = vim/vim.symlink/bundle/unite-tmux
+	url = git://github.com/Shougo/unite.vim
+[submodule "vim/vim.symlink/bundle/unite-tmux"]
+	path = vim/vim.symlink/bundle/unite-tmux
+	url = git://github.com/zhaocai/unite-tmux.git
 [submodule "vim/vim.symlink/bundle/ag.vim"]
 	path = vim/vim.symlink/bundle/ag.vim
 	url = git://github.com/rking/ag.vim.git
