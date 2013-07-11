@@ -1,10 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/rich/workspace/pos.rb'
 let g:netrw_dirhist_2='/Users/rich/Movies/Learn Mac OS X Terminal'
 let g:netrw_dirhist_3='/Users/rich/dotfiles/setup'
 let g:netrw_dirhist_4='/Users/rich/dotfiles'
-let g:netrw_dirhist_5='/Users/rich/workspace/pos.rb'
-let g:netrw_dirhist_6='/Users/rich/dotfiles'
-let g:netrw_dirhist_7='/Users/rich/workspace/pos.rb'
-let g:netrw_dirhist_8='/Users/rich/dotfiles'
+let g:netrw_dirhist_5='/home/ubuntu/.emacs.d'
+let g:netrw_dirhist_6='/home/ubuntu/.emacs.d/auto-save-list'
