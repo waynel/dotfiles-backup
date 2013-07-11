@@ -13,11 +13,11 @@
   alias gm='git merge --no-ff'
   alias gmf='git merge --ff-only' 
   alias gsl='git stash list'
-  alias gpoh='git push origin head'
+  alias gpoh='git push origin HEAD'
   alias gpr='git pull --rebase'
   gfuzz(){
     echo "The Following Where Caught by The Fuzz:\n";
-    git cherry -v head master | grep "+"
+    git cherry -v HEAD master | grep "+"
   }
   gpolice(){
     echo "The Following Where Caught by The Fuzz:\n";
