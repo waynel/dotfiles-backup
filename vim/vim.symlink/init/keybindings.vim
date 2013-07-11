@@ -106,9 +106,11 @@
       map <silent><leader>r :<cr>
     "prompt for a command to run
       map <leader>rp  :VimuxPromptCommand<cr>
+      map <leader>rv  y:call VimuxRunCommand('<c-r>"')<CR>
       map <leader>rl  :VimuxRunLastCommand<cr>
       map <leader>ri  :VimuxInspectRunner<cr>
       map <leader>rx  :VimuxCloseRunner<cr>
+      map <leader>rc  :let VimuxUseNearestPane = 1<cr>
 "      map <leader>rs  :w<cr>:VimuxInterruptRunner<cr>
       map <leader>rtf :w<cr>:RunRubyFocusedTest<cr>
       map <leader>rtc :w<cr>:RunRubyFocusedContext<cr>
