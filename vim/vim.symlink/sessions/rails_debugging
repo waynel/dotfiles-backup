@@ -14,6 +14,8 @@ snoremap % b<BS>%
 snoremap ' b<BS>'
 vmap * y/"
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)
+vmap ,rr y:call VimuxRunCommand('"')
+map ,RR :VimuxPromptCommand
 nmap <silent> ,s :set spell!
 map <silent> ,cp :! coffee --compile %:p
 map <silent> ,cr :CoffeeRun
@@ -25,6 +27,8 @@ map ,rc :let VimuxUseNearestPane = 1
 map ,rx :VimuxCloseRunner
 map ,ri :VimuxInspectRunner
 map ,rl :VimuxRunLastCommand
+nmap ,rr Vy:call VimuxRunCommand('"')
+omap ,rr Vy:call VimuxRunCommand('"')
 map ,rp :VimuxPromptCommand
 map <silent> ,r :
 map <silent> ,gl :Glog
@@ -55,7 +59,7 @@ map ,H :botright new
 map ,h :new
 nmap ,v :vnew
 nmap ,rs :call ReloadAllSnippets()
-map ,rv y:call VimuxRunCommand('"')
+nmap ,rv :source $MYVIMRC
 nmap ,rb :w! ~/scrap.rb:r !ruby %
 map ,OO :source ~/.vim/sessions/
 map ,oo :source ~/.vim/sessions/last.vim
@@ -246,34 +250,31 @@ set tabline=%!MyTabLine()
 set tabstop=2
 set visualbell
 set wildmode=list:longest
-set window=69
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/workspace/developer_support
+cd ~/
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 badd +0 ~/scrap.rb
-badd +0 ~/Code/libs/rails/activerecord/lib/active_record/dynamic_finder_match.rb
-badd +0 ~/Code/libs/rails/activerecord/lib/active_record/base.rb
 silent! argdel *
 edit ~/scrap.rb
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
 argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-nmap <buffer> gf <Plug>RailsTabFind
-nmap <buffer> f <Plug>RailsSplitFind
 nnoremap <buffer> <silent> g} :exe        "ptjump =RubyCursorIdentifier()"
 nnoremap <buffer> <silent> } :exe          "ptag =RubyCursorIdentifier()"
 nnoremap <buffer> <silent> g] :exe      "stselect =RubyCursorIdentifier()"
 nnoremap <buffer> <silent> g :exe        "stjump =RubyCursorIdentifier()"
 nnoremap <buffer> <silent>  :exe v:count1."stag =RubyCursorIdentifier()"
 nnoremap <buffer> <silent> ] :exe v:count1."stag =RubyCursorIdentifier()"
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
 nnoremap <buffer> <silent>  :exe  v:count1."tag =RubyCursorIdentifier()"
 xnoremap <buffer> <silent> ,a} `>a}`<i{
 xnoremap <buffer> <silent> ,a{ `>a}`<i{
@@ -284,296 +285,9 @@ xnoremap <buffer> <silent> ,a] `>a]`<i[
 xnoremap <buffer> <silent> ,a[ `>a]`<i[
 xnoremap <buffer> <silent> ,a" `>a"`<i"
 xnoremap <buffer> <silent> ,a` `>a``<i`
-nmap <buffer> gf <Plug>RailsFind
 nnoremap <buffer> <silent> g] :exe       "tselect =RubyCursorIdentifier()"
 nnoremap <buffer> <silent> g :exe         "tjump =RubyCursorIdentifier()"
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal noautoindent
-setlocal balloonexpr=RubyBalloonexpr()
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=syntaxcomplete#Complete
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-setlocal nocursorline
-setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'ruby'
-setlocal filetype=ruby
-endif
-setlocal foldcolumn=0
-set nofoldenable
-setlocal nofoldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=ql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=^\\s*\\<\\(load\\|w*require\\)\\>
-setlocal includeexpr=RailsIncludeexpr()
-setlocal indentexpr=GetRubyIndent()
-setlocal indentkeys=0{,0},0),0],!^F,o,O,e,=end,=elsif,=when,=ensure,=rescue,==begin,==end
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=ri
-setlocal nolinebreak
-setlocal nolisp
-set list
-setlocal list
-setlocal nomacmeta
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/,~/app,~/app/models,~/app/controllers,~/app/helpers,~/config,~/lib,~/app/views,~/test,~/test/unit,~/test/functional,~/test/integration,~/app/*,~/vendor,~/vendor/plugins/*/lib,~/vendor/plugins/*/test,~/vendor/rails/*/lib,~/vendor/rails/*/test,ruby-2.0.0-p247\
-
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=2
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%9*\ NORMAL\ %9*%{g:airline_left_sep}%9*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %9*%{g:airline_left_sep}\ /Users/rich/scrap.rb%#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%9*%<%=%9*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%9*\ %{strlen(&filetype)>0?&filetype:''}\ %9*%{g:airline_right_sep}%9*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %9*%{g:airline_right_sep}%9*\ %3p%%\ :%3l:%3c\ 
-setlocal suffixesadd=.rb
-setlocal noswapfile
-setlocal synmaxcol=3000
-if &syntax != 'ruby'
-setlocal syntax=ruby
-endif
-setlocal tabstop=2
-setlocal tags=~/tmp/tags,./tags,tags,~/tags
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-set nowrap
-setlocal nowrap
-setlocal wrapmargin=0
-let s:l = 9 - ((8 * winheight(0) + 34) / 68)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-9
-normal! 023l
-tabedit ~/Code/libs/rails/activerecord/lib/active_record/dynamic_finder_match.rb
-set splitbelow splitright
-wincmd t
-set winheight=1 winwidth=1
-argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-nmap <buffer> gf <Plug>RailsTabFind
-nmap <buffer> f <Plug>RailsSplitFind
-nnoremap <buffer> <silent> g} :exe        "ptjump =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> } :exe          "ptag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g] :exe      "stselect =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g :exe        "stjump =RubyCursorIdentifier()"
-nnoremap <buffer> <silent>  :exe v:count1."stag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> ] :exe v:count1."stag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent>  :exe  v:count1."tag =RubyCursorIdentifier()"
-xnoremap <buffer> <silent> ,a} `>a}`<i{
-xnoremap <buffer> <silent> ,a{ `>a}`<i{
-xnoremap <buffer> <silent> ,a) `>a)`<i(
-xnoremap <buffer> <silent> ,a( `>a)`<i(
-xnoremap <buffer> <silent> ,a' `>a'`<i'
-xnoremap <buffer> <silent> ,a] `>a]`<i[
-xnoremap <buffer> <silent> ,a[ `>a]`<i[
-xnoremap <buffer> <silent> ,a" `>a"`<i"
-xnoremap <buffer> <silent> ,a` `>a``<i`
 nmap <buffer> gf <Plug>RailsFind
-nnoremap <buffer> <silent> g] :exe       "tselect =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g :exe         "tjump =RubyCursorIdentifier()"
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal noautoindent
-setlocal balloonexpr=RubyBalloonexpr()
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=syntaxcomplete#Complete
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-setlocal nocursorline
-setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'ruby'
-setlocal filetype=ruby
-endif
-setlocal foldcolumn=0
-set nofoldenable
-setlocal nofoldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=ql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=^\\s*\\<\\(load\\|w*require\\)\\>
-setlocal includeexpr=RailsIncludeexpr()
-setlocal indentexpr=GetRubyIndent()
-setlocal indentkeys=0{,0},0),0],!^F,o,O,e,=end,=elsif,=when,=ensure,=rescue,==begin,==end
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=ri
-setlocal nolinebreak
-setlocal nolisp
-set list
-setlocal list
-setlocal nomacmeta
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/,~/app,~/app/models,~/app/controllers,~/app/helpers,~/config,~/lib,~/app/views,~/test,~/test/unit,~/test/functional,~/test/integration,~/app/*,~/vendor,~/vendor/plugins/*/lib,~/vendor/plugins/*/test,~/vendor/rails/*/lib,~/vendor/rails/*/test,ruby-2.0.0-p247\
-
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=2
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%9*\ NORMAL\ %9*%{g:airline_left_sep}%9*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %9*%{g:airline_left_sep}\ activerecord/lib/active_record/dynamic_finder_match.rb%#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%9*%<%=%9*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%9*\ %{strlen(&filetype)>0?&filetype:''}\ %9*%{g:airline_right_sep}%9*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %9*%{g:airline_right_sep}%9*\ %3p%%\ :%3l:%3c\ 
-setlocal suffixesadd=.rb
-setlocal noswapfile
-setlocal synmaxcol=3000
-if &syntax != 'ruby'
-setlocal syntax=ruby
-endif
-setlocal tabstop=2
-setlocal tags=~/tmp/tags,./tags,tags,~/tags
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-set nowrap
-setlocal nowrap
-setlocal wrapmargin=0
-let s:l = 8 - ((7 * winheight(0) + 33) / 67)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-8
-normal! 0
-lcd ~/Code/libs/rails
-tabedit ~/Code/libs/rails/activerecord/lib/active_record/base.rb
-set splitbelow splitright
-wincmd t
-set winheight=1 winwidth=1
-argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-nmap <buffer> gf <Plug>RailsTabFind
-nmap <buffer> f <Plug>RailsSplitFind
-nnoremap <buffer> <silent> g} :exe        "ptjump =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> } :exe          "ptag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g] :exe      "stselect =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g :exe        "stjump =RubyCursorIdentifier()"
-nnoremap <buffer> <silent>  :exe v:count1."stag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> ] :exe v:count1."stag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent>  :exe  v:count1."tag =RubyCursorIdentifier()"
-xnoremap <buffer> <silent> ,a} `>a}`<i{
-xnoremap <buffer> <silent> ,a{ `>a}`<i{
-xnoremap <buffer> <silent> ,a) `>a)`<i(
-xnoremap <buffer> <silent> ,a( `>a)`<i(
-xnoremap <buffer> <silent> ,a' `>a'`<i'
-xnoremap <buffer> <silent> ,a] `>a]`<i[
-xnoremap <buffer> <silent> ,a[ `>a]`<i[
-xnoremap <buffer> <silent> ,a" `>a"`<i"
-xnoremap <buffer> <silent> ,a` `>a``<i`
-nmap <buffer> gf <Plug>RailsFind
-nnoremap <buffer> <silent> g] :exe       "tselect =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g :exe         "tjump =RubyCursorIdentifier()"
 let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
@@ -683,14 +397,13 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 994 - ((33 * winheight(0) + 33) / 67)
+let s:l = 1 - ((0 * winheight(0) + 34) / 68)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-994
-normal! 012l
-lcd ~/Code/libs/rails
-tabnext 3
+1
+normal! 0
+tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
 endif

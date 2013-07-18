@@ -11,7 +11,7 @@
 # act more responsively
   set -g escape-time 0
 # clipboard hack for os x
-  if-shell "uname | grep -q Darwin" 'set -g default-command "reattach-to-user-namespace -l /bin/zsh"'
+  if-shell "uname | grep -q Darwin" 'set -g default-command "reattach-to-user-namespace -l /bin/bash"'
   if-shell "uname | grep -q Darwin" 'bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"'
   if-shell "uname | grep -q Darwin" 'bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"'
 # rename window numbers

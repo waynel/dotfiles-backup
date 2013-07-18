@@ -1,0 +1,4 @@
+export DFBASH=~/dotfiles
+#for config_file in $DFBASH/**/*.sh; do source $config_file; done
+source $DFBASH/bash/prompt.sh
+alias rl='source ~/.bashrc'

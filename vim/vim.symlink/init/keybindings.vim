@@ -105,16 +105,16 @@
     "this is just annoying
       map <silent><leader>r :<cr>
     "prompt for a command to run
-      map <leader>rp  :VimuxPromptCommand<cr>
-      map <leader>rv  y:call VimuxRunCommand('<c-r>"')<CR>
+      map <leader>RR  :VimuxPromptCommand<cr>
+      map <leader>rr  Vy:call VimuxRunCommand('<c-r>"')<CR>
+      vmap <leader>rr  y:call VimuxRunCommand('<c-r>"')<CR>
       map <leader>rl  :VimuxRunLastCommand<cr>
-      map <leader>ri  :VimuxInspectRunner<cr>
       map <leader>rx  :VimuxCloseRunner<cr>
       map <leader>rc  :let VimuxUseNearestPane = 1<cr>
 "      map <leader>rs  :w<cr>:VimuxInterruptRunner<cr>
-      map <leader>rtf :w<cr>:RunRubyFocusedTest<cr>
-      map <leader>rtc :w<cr>:RunRubyFocusedContext<cr>
-      map <leader>rta :w<cr>:RunAllRubyTests<cr>
+"      map <leader>rtf :w<cr>:RunRubyFocusedTest<cr>
+"      map <leader>rtc :w<cr>:RunRubyFocusedContext<cr>
+"      map <leader>rta :w<cr>:RunAllRubyTests<cr>
  "Coffee Stuff
       map <silent><leader>cc  :CoffeeCompile vert<cr>
       map <silent><leader>cr  :CoffeeRun<cr>

@@ -1,11 +1,10 @@
 #General Stuff
   alias ..="cd .."
   alias ...="cd ../.."
+  alias ls="ls -G"
   alias ll="ls -Ghla"
   alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 #META
-  alias reload!='source $HOME/.zshrc'
-  alias rl='source $HOME/.zshrc'
 #Join the dots
   alias cdf='cd ~/dotfiles/'
   alias vdf='cd ~/dotfiles/; vim ~/dotfiles'
