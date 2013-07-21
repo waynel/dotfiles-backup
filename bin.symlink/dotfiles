@@ -1,0 +1,53 @@
+#!/bin/bash
+oPS3=$PS3
+PS3="Please Choose a task:  (Enter to list options): "
+select task in "Dotfiles - Quit" \
+  "Dotfiles - Install" \
+  "Dotfiles - Edit" \
+  "Dotfiles - Link/Relink all dotfiles" \
+  "Dotfiles - Initialize Git Submodules" \
+  "Shell - Show All Bash Commands" \
+  "Shell - Edit Aliases" \
+  "Vim - Edit Keybindings"
+do
+  case $REPLY in
+#ACTIONS
+  #Quit
+    1) echo "Goodbye."
+       break
+       ;;
+    2) echo "Installing..."
+       break
+       ;;
+    3) ${EDITOR:-vi} ~/dotfiles
+       break
+       ;;
+    4) echo "(re)Linking"
+       break
+       ;;
+    5) echo "(re)Initializing Submodules"
+       break
+       ;;
+#SHELL
+  #SHOW
+    #COMMANDS
+    6)
+       SH_FILES=~/dotfiles/sh/*.sh
+       BASH_FILES=~/dotfiles/bash/*.sh
+       vim -u /usr/share/vim/vim73/macros/less.vim $SH_FILES $BASH_FILES
+       break
+       ;;
+  #Edit
+    #COMMANDS
+    7) ${EDITOR:-vi} ~/dotfiles/sh/aliases.sh
+       break
+       ;;
+#VIM
+  #EDIT
+    #KEYBINDINGS
+    8) ${EDITOR:-vi} ~/dotfiles/vim/vim.symlink/init/keybindings.vim
+       break
+       ;;
+  esac
+done
+PS3=$oPS3

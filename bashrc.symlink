@@ -1,1 +1,7 @@
-zsh/zshrc.symlink
+#customization for each shell to lead in itself
+  export DFPATH=~/dotfiles/
+  for config_file in $DFPATH/bash/*.sh; do source $config_file; done
+  for config_file in $DFPATH/sh/*.sh; do source $config_file; done
+  alias rl='source ~/.bashrc'
+#shell specific options
+  shopt -s extglob

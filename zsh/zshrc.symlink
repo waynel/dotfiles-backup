@@ -1,45 +1,10 @@
-export ZSH=~/dotfiles
+#customization for each shell to lead in itself
+  export ZSH=~/dotfiles
+  for config_file ($ZSH/zsh/*.zsh) source $config_file
+  for config_file ($ZSH/sh/*.sh) source $config_file
+  alias rl='source ~/.zshrc'
 
-export PATH=/usr/local/bin:$HOME/.bin:$PATH
-
-for config_file ($ZSH/**/*.zsh) source $config_file
-
-autoload -U compinit
-compinit
-
-for config_file ($ZSH/**/completion.zsh) source $config_file
-
-[ -e ~/.localrc ] && source ~/.localrc
-#plugins=(vi-mode)
-# Less Colors for Man Pages
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-export NODE_PATH='/usr/local/lib/node_modules'
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-
-export HISTIGNORE='ls:rl:source:pwd:clear:history'
-export HISTCONTROL=ignoredups
-#Color Man Pages
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m' 
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-# define preferred tools
-export EDITOR=vim
-export PAGER=less
-
-alias reload!='source $HOME/.zshrc'
-alias rl='source $HOME/.zshrc'
+#specific
+  autoload -U compinit
+  compinit
+  #plugins=(vi-mode)

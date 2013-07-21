@@ -267,8 +267,8 @@ vsplit
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 59 + 50) / 101)
-exe 'vert 2resize ' . ((&columns * 41 + 50) / 101)
+exe 'vert 1resize ' . ((&columns * 44 + 52) / 104)
+exe 'vert 2resize ' . ((&columns * 59 + 52) / 104)
 argglobal
 xnoremap <buffer> <silent> ,a} `>a}`<i{
 xnoremap <buffer> <silent> ,a{ `>a}`<i{
@@ -385,12 +385,12 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 15 - ((14 * winheight(0) + 20) / 40)
+let s:l = 32 - ((30 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
-normal! 040l
+32
+normal! 01l
 wincmd w
 argglobal
 edit bash/prompt.sh
@@ -492,7 +492,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%9*\ NORMAL\ %9*%{g:airline_left_sep}%9*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %9*%{g:airline_left_sep}\ bash/prompt.sh%#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%9*%<%=%9*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%9*\ %{strlen(&filetype)>0?&filetype:''}\ %9*%{g:airline_right_sep}%9*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %9*%{g:airline_right_sep}%9*\ %3p%%\ :%3l:%3c\ 
+setlocal statusline=%2*%{AirlineModePrefix()}%3*%{g:airline_left_sep}%4*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %5*%{g:airline_left_sep}%*\ %f%m\ %#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*%<%=%6*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%*\ %{strlen(&filetype)>0?&filetype:''}\ %5*%{g:airline_right_sep}%4*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %3*%{g:airline_right_sep}%2*\ %3p%%\ :%3l:%3c\ 
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
@@ -509,15 +509,16 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 3 - ((2 * winheight(0) + 20) / 40)
+let s:l = 28 - ((15 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
-normal! 01l
+28
+normal! 016l
 wincmd w
-exe 'vert 1resize ' . ((&columns * 59 + 50) / 101)
-exe 'vert 2resize ' . ((&columns * 41 + 50) / 101)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 44 + 52) / 104)
+exe 'vert 2resize ' . ((&columns * 59 + 52) / 104)
 tabedit install
 set splitbelow splitright
 wincmd t
@@ -644,6 +645,7 @@ exe s:l
 normal! zt
 44
 normal! 040l
+2wincmd w
 tabedit zsh/aliases.zsh
 set splitbelow splitright
 wincmd t
@@ -748,7 +750,7 @@ setlocal spell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%2*%{AirlineModePrefix()}%3*%{g:airline_left_sep}%4*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %5*%{g:airline_left_sep}%*\ %f%m\ %#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*%<%=%6*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%*\ %{strlen(&filetype)>0?&filetype:''}\ %5*%{g:airline_right_sep}%4*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %3*%{g:airline_right_sep}%2*\ %3p%%\ :%3l:%3c\ 
+setlocal statusline=%9*\ NORMAL\ %9*%{g:airline_left_sep}%9*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %9*%{g:airline_left_sep}\ zsh/aliases.zsh%#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%9*%<%=%9*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%9*\ %{strlen(&filetype)>0?&filetype:''}\ %9*%{g:airline_right_sep}%9*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %9*%{g:airline_right_sep}%9*\ %3p%%\ :%3l:%3c\ 
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
@@ -765,12 +767,13 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 28 - ((27 * winheight(0) + 20) / 40)
+let s:l = 27 - ((26 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-28
-normal! 010l
+27
+normal! 09l
+2wincmd w
 tabedit zsh/zshrc.symlink
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -779,8 +782,8 @@ vsplit
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 59 + 50) / 101)
-exe 'vert 2resize ' . ((&columns * 54 + 50) / 101)
+exe 'vert 1resize ' . ((&columns * 59 + 52) / 104)
+exe 'vert 2resize ' . ((&columns * 44 + 52) / 104)
 argglobal
 xnoremap <buffer> <silent> ,a} `>a}`<i{
 xnoremap <buffer> <silent> ,a{ `>a}`<i{
@@ -1028,9 +1031,10 @@ normal! zt
 4
 normal! 023l
 wincmd w
-exe 'vert 1resize ' . ((&columns * 59 + 50) / 101)
-exe 'vert 2resize ' . ((&columns * 54 + 50) / 101)
-tabnext 3
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 59 + 52) / 104)
+exe 'vert 2resize ' . ((&columns * 44 + 52) / 104)
+tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
 endif

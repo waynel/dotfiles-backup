@@ -26,7 +26,7 @@ ruby_version() {
 local conditional_prompt="%(?,%{$fg[231]%}❯%{$reset_color%},%{$fg[red]%}❯%{$reset_color%})"
 local pwd="%{%F{green}%}%~"
 
-local right=$'%{%F{211}%}%n@%m%{$reset_color%}%{%F{238}%}$(ruby_version)%{%f%}$(git_cwd_info)%{%E%}'
+local right=$'%{%F{211}%}%n@%m%{$reset_color%}%{%F{238}%}$(ruby_version)%{%f%}%{%E%}'
 local top='${pwd}%{%F{238}%}%}${PR_FILLBAR}%{%f%}'
 
 export PROMPT="${top}

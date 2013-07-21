@@ -111,10 +111,6 @@
       map <leader>rl  :VimuxRunLastCommand<cr>
       map <leader>rx  :VimuxCloseRunner<cr>
       map <leader>rc  :let VimuxUseNearestPane = 1<cr>
-"      map <leader>rs  :w<cr>:VimuxInterruptRunner<cr>
-"      map <leader>rtf :w<cr>:RunRubyFocusedTest<cr>
-"      map <leader>rtc :w<cr>:RunRubyFocusedContext<cr>
-"      map <leader>rta :w<cr>:RunAllRubyTests<cr>
  "Coffee Stuff
       map <silent><leader>cc  :CoffeeCompile vert<cr>
       map <silent><leader>cr  :CoffeeRun<cr>
