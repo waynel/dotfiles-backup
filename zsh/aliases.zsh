@@ -3,6 +3,7 @@
   alias ...="cd ../.."
   alias ls="ls -G"
   alias ll="ls -Ghla"
+  alias lsd="ls -d */"
 #META
 #Join the dots
   alias cdf='cd ~/dotfiles/'

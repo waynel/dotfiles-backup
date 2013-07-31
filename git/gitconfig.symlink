@@ -8,6 +8,7 @@
 	sta = stash
 	llog = log --date=local
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	ctags = !.git/hooks/ctags
 ;dont compalain about whitespace when merging
 [apply]
 	whitespace = nowarn
@@ -36,3 +37,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[init]
+	templatedir = ~/.git_template

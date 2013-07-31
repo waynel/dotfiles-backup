@@ -1,8 +1,10 @@
 "General
   let mapleader = ','
   map ; :
+  nmap <leader>qq :q!<cr>
   noremap ;; ;
   map Y "+y
+  nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
   "Search Selected Text
     vmap * y/<c-r>"<cr>
   "colors

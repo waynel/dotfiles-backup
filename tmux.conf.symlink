@@ -50,7 +50,7 @@
   set -g status-left '#[fg=yellow](#S)'
   set -g status-right ''
   set -g status-right-length 120
-  set -g status-right "[ #(batt source) #(batt remaining) ] #(date \"+%Y-%m-%d %H:%M\")"
+  set -g status-right "#(batt source) | #(batt remaining) [#(batt capacity --tmux)]  #(date \"+%Y-%m-%d %H:%M\")"
 
 
 # colors

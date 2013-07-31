@@ -35,6 +35,8 @@
     set hls
     nnoremap <silent> <space> :nohlsearch<Bar>:echo<cr>""
 " Behavior
+  "auto center cursor
+  set so=999
   set splitright
   set splitbelow
   set mouse=a "use mouse in terminal mode
@@ -49,6 +51,6 @@
   let g:ruby_path = system('rvm current')
 set autoread
 set ttyfast
-set shell=/bin/sh
+set shell=/bin/bash
 set noswapfile
 set nobackup

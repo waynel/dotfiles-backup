@@ -15,6 +15,15 @@
   alias gsl='git stash list'
   alias gpoh='git push origin HEAD'
   alias gpr='git pull --rebase'
+  gcherry(){
+    if [ $1 ];then
+      name=$1
+    else
+      name="@{-1}"
+    fi
+    echo "cherry picking $( git reflog $name -n 1 )"
+    git cherry-pick $( git reflog $name -n 1 | awk '{print $1}' )
+  }
   gfuzz(){
     echo "The Following Where Caught by The Fuzz:\n";
     git cherry -v HEAD master | grep "+"
