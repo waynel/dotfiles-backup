@@ -1,5 +1,6 @@
 # for vi mode
 set editing-mode vi
+set completion-ignore-case on
 $if mode=vi
   set keymap vi-command
   # these are for vi-command mode

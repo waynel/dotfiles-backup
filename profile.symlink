@@ -1,9 +1,9 @@
-export PATH=/usr/local/bin:$HOME/.bin:$PATH
 source ~/.bashrc
 #PATH STUFF
+  export PATH=/usr/local/bin:$HOME/.bin:/usr/local/sbin:$PATH
+  export PATH="/usr/local/heroku/bin:$PATH"
   export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
   export NODE_PATH='/usr/local/lib/node_modules'
-  export PATH="/usr/local/heroku/bin:$PATH"
 # Less Colors for Man Pages
   export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
   export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold

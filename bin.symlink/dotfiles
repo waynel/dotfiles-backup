@@ -6,9 +6,11 @@ select task in "Dotfiles - Quit" \
   "Dotfiles - Edit" \
   "Dotfiles - Link/Relink all dotfiles" \
   "Dotfiles - Initialize Git Submodules" \
-  "Shell - Show All Bash Commands" \
-  "Shell - Edit Aliases" \
-  "Vim - Edit Keybindings"
+  "Shell    - Show All Bash Commands" \
+  "Shell    - Edit Aliases" \
+  "Vim      - Edit Keybindings" \
+  "Vim      - Edit Preferences" \
+  "Tmux     - Edit TEMUX"
 do
   case $REPLY in
 #ACTIONS
@@ -46,6 +48,12 @@ do
   #EDIT
     #KEYBINDINGS
     8) ${EDITOR:-vi} ~/dotfiles/vim/vim.symlink/init/keybindings.vim
+       break
+       ;;
+    9) ${EDITOR:-vi} ~/dotfiles/vim/vim.symlink/
+       break
+       ;;
+    10) ${EDITOR:-vi} ~/dotfiles/tmux_sessions/temux
        break
        ;;
   esac

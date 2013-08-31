@@ -13,3 +13,4 @@ au BufRead,BufNewFile *.less set filetype=css
 au BufRead,BufNewFile *.ejs set filetype=html
 
 au BufRead,BufNewFile *.hamljs set filetype=haml
+au BufRead,BufNewFile *.hamlc set filetype=haml

@@ -1,3 +1,4 @@
+
 "General
   let mapleader = ','
   map ; :
@@ -5,6 +6,7 @@
   noremap ;; ;
   map Y "+y
   nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+  nnoremap <Leader><Space> za
   "Search Selected Text
     vmap * y/<c-r>"<cr>
   "colors
@@ -30,7 +32,7 @@
   nmap <leader>v :vnew<cr>
   map <leader>h :new<cr>
   map <leader>H :botright new<cr>
-  map <leader>V :botright vnew<cr>
+  map <leader>V :vsp<cr>
 "resize windows
   nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
   nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
@@ -81,7 +83,21 @@
   endfunction
   noremap <silent> <c-k> :call <SID>swap_up()<CR>
   noremap <silent> <c-j> :call <SID>swap_down()<CR>
-"Plugins
+  "clear unused buffers
+  function! CloseUnloadedBuffers()
+      let lastBuffer = bufnr('$')
+
+      let currentBuffer = 1
+      while currentBuffer <= lastBuffer
+          " If buffer exists, is shown in :ls output, and isn't loaded
+          if bufexists(currentBuffer) && buflisted(currentBuffer) && bufloaded(currentBuffer) == 0
+              execute 'bdelete' currentBuffer
+          endif
+
+          let currentBuffer = currentBuffer + 1
+      endwhile
+  endfunction
+"plugins
   "Ctrl-P
     nmap <leader>f :CtrlP<cr>
   "Tabular

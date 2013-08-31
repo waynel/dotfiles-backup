@@ -19,7 +19,7 @@
     set list
     set listchars=trail:·
   set nowrap
-  set foldmethod=syntax
+  set foldmethod=indent
   set nofoldenable
   set backspace=2
   " Tabs are 2 literal spaces
@@ -51,6 +51,14 @@
   let g:ruby_path = system('rvm current')
 set autoread
 set ttyfast
+set scrolljump=5
+set timeout
+set ttimeout
+set noshowcmd
 set shell=/bin/bash
 set noswapfile
 set nobackup
+
+
+"for vimux
+let g:VimuxOrientation = "h"

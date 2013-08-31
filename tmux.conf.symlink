@@ -2,7 +2,6 @@
   set -g prefix C-a
   bind C-a send-prefix
   bind C-k send-keys -R \; clear-history
-#clear scree
 #switch sessions
   bind -r ( switch-client -p
   bind -r ) switch-client -n
@@ -15,8 +14,8 @@
   if-shell "uname | grep -q Darwin" 'bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"'
   if-shell "uname | grep -q Darwin" 'bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"'
 # rename window numbers
-  set -g base-index 1
-  setw -g pane-base-index 1
+   setw -g pane-base-index 1
+   set-option -g base-index 1
 # splits
   bind | split-window -h
   bind - split-window -v
@@ -36,7 +35,7 @@
     bind -r L resize-pane -R 5
   #for copy mode
     setw -g mode-keys vi
-    bind Escape copy-mode #just for usability
+    bind -t vi-copy Escape copy-selection #just for usability
     bind C-q copy-mode #fast enter
     bind p paste-buffer
     bind -t vi-copy 'v' begin-selection
@@ -46,33 +45,32 @@
   set -g mouse-select-pane on
   set -g mouse-resize-pane on
   set -g mouse-select-window on
-#status line 
-  set -g status-left '#[fg=yellow](#S)'
-  set -g status-right ''
-  set -g status-right-length 120
-  set -g status-right "#(batt source) | #(batt remaining) [#(batt capacity --tmux)]  #(date \"+%Y-%m-%d %H:%M\")"
 
 
 # colors
   set -g default-terminal "screen-256color"
-  #status bar
-    #overall
-    set -g status-fg white
-    set -g status-bg "#666666"
-    #windows
-      setw -g window-status-fg white
-      setw -g window-status-bg "#666666"
-      setw -g window-status-attr dim
-      setw -g window-status-current-fg black
-      setw -g window-status-current-bg green
-      setw -g window-status-current-attr bright
-  #panes
-    set-option -g pane-border-fg white
-    set-option -g pane-active-border-fg green
-  #alerts
+#    #status bar
+     set -g status-fg white
+     set -g status-bg "#666666"
+#    #windows
+     setw -g window-status-fg white
+     setw -g window-status-bg "#666666"
+     setw -g window-status-attr dim
+     setw -g window-status-current-fg black
+     setw -g window-status-current-bg green
+     setw -g window-status-current-attr bright
+# #status line 
+    set -g status-left '#[fg=yellow](#S)'
+    set -g status-right-length 120
+    set -g status-right "#(batt source) | #(batt remaining) [#(batt capacity --tmux)]  #(date \"+%Y-%m-%d %H:%M\")"
+#  #panes
+    set-option -g pane-border-fg green
+    set-option -g pane-active-border-fg red
+#  #alerts
     set -g message-fg white
-    set -g message-bg black
+    set -g message-bg red
     set -g message-attr bright
-  #tab changes
-    setw -g monitor-activity on
-    set -g visual-activity on
+# http://github.com/richsoni/dotfiles/tmux.conf.symlink
+#  #tab changes
+   setw -g monitor-activity on
+   set  -g visual-activity on
