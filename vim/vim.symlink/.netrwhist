@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/rich/dotfiles/vim/vim.symlink'
-let g:netrw_dirhist_2='/Users/rich/dotfiles/vim/vim.symlink/init'
-let g:netrw_dirhist_3='/Users/rich/dotfiles/vim/vim.symlink'
-let g:netrw_dirhist_4='/Users/rich/dotfiles/vim/vim.symlink/bundle'
-let g:netrw_dirhist_5='/Users/rich/Code/Projects/ruby/code_post/app/assets/stylesheets/code_post'
-let g:netrw_dirhist_6='/Users/rich/workspace/pos.rb/app/assets/javascripts/backbone/collections'

@@ -40,11 +40,11 @@
     set splitbelow
     set mouse=a "use mouse in terminal mode
   " Toggle Numbers
-    set relativenumber
+  "  set relativenumber
     set number
-    autocmd InsertEnter * :set number
-    autocmd InsertEnter * :set norelativenumber
-    autocmd InsertLeave * :set relativenumber
+  "  autocmd InsertEnter * :set number
+  "  autocmd InsertEnter * :set norelativenumber
+  "  autocmd InsertLeave * :set relativenumber
   "Spell Checking
     nmap <silent> <leader>s :set spell!<CR>
   "Winheight
