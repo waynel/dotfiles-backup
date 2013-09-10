@@ -1,4 +1,3 @@
-
 "General
   let mapleader = ','
   nmap <leader>H :help 
@@ -8,6 +7,9 @@
   map Y "+y
   nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
   nnoremap <Leader><Space> za
+  nmap QQ :q!<cr>
+  nmap WW :w!<cr>
+  nmap EE :e!<cr>
   "Search Selected Text
     vmap * y/<c-r>"<cr>
   "colors
@@ -133,6 +135,8 @@
       map <silent><leader>cc  :CoffeeCompile vert<cr>
       map <silent><leader>cr  :CoffeeRun<cr>
       map <silent><leader>cp  :! coffee --compile %:p<cr>
+ "Numbers Toggle
+   nnoremap <silent><leader>nu :NumbersToggle<CR>
  "Markdown Stuff
       map <silent><leader>md  :call MarkdownPreview()<cr>
       function! MarkdownPreview()
