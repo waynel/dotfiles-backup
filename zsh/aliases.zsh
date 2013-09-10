@@ -42,7 +42,7 @@
   alias ktmux='tmux kill-session -t $1'
 #Ticket Evo Stuff
   alias temux='~/dotfiles/tmux_sessions/temux'
-  alias retemux='tmux kill-session -t temux;ds restart;temux'
+  alias retemux='tmux kill-session -t temux;sudo ls; ds restart;temux'
   alias tegem='cd ~/workspace/ticketevolution-ruby; rename_tab "TE GEM"'
   alias teex='cd ~/workspace/pos-chrome-extension/Robotester/tests/; rename_tab "TE GEM"'
   alias tedocs='cd ~/Documents/TicketEvolution'
@@ -50,11 +50,11 @@
   alias p='cd ~/workspace/pos.rb; rename_tab "POS"'
 #Rails Shortcuts
   alias tmux_rails='~/dotfiles/tmux_sessions/railsmux'
+  alias r='rails'
   alias rrg='rake routes | grep'
 #vlc
   alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -cvlc'
   alias vlci='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 
-  function chat { if [[ $( ps aux | grep -v grep | grep "tail -f .*fnotify" ) ]]; then echo Growl running; else echo > ~/.irssi/fnotify; tail -f ~/.irssi/fnotify |  while read; do growlnotify --sticky --image ~/.irssi/irssi-icon.png -m "$REPLY"; echo $REPLY | cut -f1-10 -d" "; done & fi; irssi; }
-
+  function chat { if [[ $( ps aux | grep -v grep | grep "tail -f .*fnotify" ) ]]; then echo Growl running; else echo > ~/.irssi/fnotify; tail -f ~/.irssi/fnotify |  while read; do growlnotify --sticky --image ~/.irssi/irssi-icon.png -m "$REPLY"; echo $REPLY | cut -f1-10 -d" "; done & fi; bitlbee -F -u rich; irssi; }
   alias cofflint='coffeelint -f ~/workspace/pos.rb/.git/hooks/config/coffeelint.json `find . -name "*.coffee"`'

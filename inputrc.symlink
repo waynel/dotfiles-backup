@@ -11,6 +11,15 @@ $if mode=vi
 
   set keymap vi-insert
   # these are for vi-insert mode
+  Control-a: beginning-of-of-line
+  Control-b: backward-char
+  Control-d: delete-char
+  Control-e: end-of-line
+  Control-f: forward-char
+  Control-k: kill-line
+  Control-n: next-history
+  Control-p: previous-history
+  set keymap emacs-ctlx
   "\e[A": history-search-backward
   "\e[B": history-search-forward
   "\ep": yank-last-arg

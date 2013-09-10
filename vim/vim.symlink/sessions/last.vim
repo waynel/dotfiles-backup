@@ -14,9 +14,8 @@ snoremap % b<BS>%
 snoremap ' b<BS>'
 vmap * y/"
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)
-map ,rwp <Plug>RestoreWinPosn
-map ,swp <Plug>SaveWinPosn
 nmap <silent> ,s :set spell!
+map <silent> ,md :call MarkdownPreview()
 map <silent> ,cp :! coffee --compile %:p
 map <silent> ,cr :CoffeeRun
 map <silent> ,cc :CoffeeCompile vert
@@ -52,7 +51,6 @@ map ,C :let @* = expand("%").":".line("."):echo "Copied: ".expand("%").":".lin
 nmap <silent> ,j :%!python -m json.tool
 nmap ,t :set title titlestring=
 map ,V :vsp
-map ,H :botright new
 map ,h :new
 nmap ,v :vnew
 nmap ,rs :call ReloadAllSnippets()
@@ -65,8 +63,10 @@ map ,ss :mksession! ~/.vim/sessions/last.vim
 nmap ,sfh :setf ham
 nmap ,sfr :setf ruby
 nmap ,sfj :setf javascript
+nnoremap ,  za
 nnoremap ,zz :let &scrolloff=999-&scrolloff
 nmap ,qq :q!
+nmap ,H :help 
 nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)
 noremap ;; ;
 map ; :
@@ -207,8 +207,6 @@ nnoremap <silent> <Plug>unimpairedAFirst :exe "first ".(v:count ? v:count : ""
 nnoremap <silent> <Plug>unimpairedANext :exe "next ".(v:count ? v:count : "")
 nnoremap <silent> <Plug>unimpairedAPrevious :exe "previous ".(v:count ? v:count : "")
 nnoremap <silent> <Plug>SurroundRepeat .
-nmap <silent> <Plug>RestoreWinPosn :call RestoreWinPosn()
-nmap <silent> <Plug>SaveWinPosn :call SaveWinPosn()
 map <silent> <D-C> :let @* = expand("%"):echo "Copied: ".expand("%")
 xmap <BS> "-d
 imap S <Plug>ISurround
@@ -231,6 +229,8 @@ unlet s:cpo_save
 set autoread
 set background=dark
 set backspace=2
+set balloonexpr=SyntasticBalloonsExprNotifier()
+set errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
 set guifont=Inconsolata:h20
@@ -238,11 +238,13 @@ set helplang=en
 set hlsearch
 set ignorecase
 set incsearch
+set isident=@,48-57,_,192-255,$
+set iskeyword=@,48-57,_,192-255,$
 set langmenu=none
-set laststatus=2
 set listchars=trail:·
 set mouse=a
-set runtimepath=~/.vim,~/.vim/bundle/Decho,~/.vim/bundle/ag.vim,~/.vim/bundle/ctrlp.vim,~/.vim/bundle/gundo,~/.vim/bundle/snipmate,~/.vim/bundle/syntastic,~/.vim/bundle/tabular,~/.vim/bundle/vim-airline,~/.vim/bundle/vim-autoclose,~/.vim/bundle/vim-coffee-script,~/.vim/bundle/vim-colors-solarized,~/.vim/bundle/vim-elixir,~/.vim/bundle/vim-endwise,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-gitgutter,~/.vim/bundle/vim-haml,~/.vim/bundle/vim-in-rainbows,~/.vim/bundle/vim-markdown,~/.vim/bundle/vim-rails,~/.vim/bundle/vim-scriptease,~/.vim/bundle/vim-surround,~/.vim/bundle/vim-tomorrow-theme,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/vimux,~/.vim/bundle/vundle,~/.vim/bundle/zoomwin,/usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/vimfiles,/usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime,/usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/vimfiles/after,~/.vim/bundle/snipmate/after,~/.vim/bundle/tabular/after,~/.vim/bundle/vim-coffee-script/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/bundle/ag.vim,~/.vim/bundle/ctrlp.vim,~/.vim/bundle/gundo,~/.vim/bundle/snipmate,~/.vim/bundle/syntastic,~/.vim/bundle/tabular,~/.vim/bundle/vim-autoclose,~/.vim/bundle/vim-coffee-script,~/.vim/bundle/vim-colors-solarized,~/.vim/bundle/vim-elixir,~/.vim/bundle/vim-endwise,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-gitgutter,~/.vim/bundle/vim-haml,~/.vim/bundle/vim-markdown,~/.vim/bundle/vim-rails,~/.vim/bundle/vim-scriptease,~/.vim/bundle/vim-surround,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/vimux,~/.vim/bundle/zoomwin,/usr/local/Cellar/macvim/7.4-70/MacVim.app/Contents/Resources/vim/vimfiles,/usr/local/Cellar/macvim/7.4-70/MacVim.app/Contents/Resources/vim/runtime,/usr/local/Cellar/macvim/7.4-70/MacVim.app/Contents/Resources/vim/vimfiles/after,~/.vim/bundle/snipmate/after,~/.vim/bundle/tabular/after,~/.vim/bundle/vim-coffee-script/after,~/.vim/after
+set scrolljump=5
 set scrolloff=999
 set shiftwidth=2
 set smartcase
@@ -251,6 +253,7 @@ set splitright
 set noswapfile
 set tabline=%!MyTabLine()
 set tabstop=2
+set ttimeout
 set visualbell
 set wildmode=list:longest
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
@@ -261,10 +264,567 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 public/stylesheets/ticket-evo.css
-badd +0 public/stylesheets/vendor-overrides.css
+badd +105 app/controllers/orders_controller.rb
+badd +0 app/assets/javascripts/backbone/views/orders/show.js.coffee
+badd +20 app/assets/javascripts/backbone/controllers/orders/show.js.coffee
+badd +11 app/assets/javascripts/backbone/views/orders/show_speculative.js.coffee
+badd +0 app/assets/javascripts/backbone/views/orders/show/view_by_tickets_spec.js.coffee
+badd +40 app/assets/javascripts/backbone/models/v2/order.js.coffee
+badd +3 app/assets/javascripts/backbone/collections/order_items.js.coffee
+badd +0 app/assets/javascripts/backbone/collections/base/paginated_base.js
+badd +102 app/assets/javascripts/backbone/models/base/base_model.js.coffee
+badd +0 app/assets/javascripts/backbone/collections/v2/order_items.js.coffee
 silent! argdel *
-edit public/stylesheets/ticket-evo.css
+edit app/assets/javascripts/backbone/views/orders/show/view_by_tickets_spec.js.coffee
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+3wincmd h
+wincmd w
+wincmd w
+wincmd w
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 70 + 141) / 283)
+exe 'vert 2resize ' . ((&columns * 70 + 141) / 283)
+exe 'vert 3resize ' . ((&columns * 70 + 141) / 283)
+exe 'vert 4resize ' . ((&columns * 70 + 141) / 283)
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
+xnoremap <buffer> <silent> ,a} `>a}`<i{
+xnoremap <buffer> <silent> ,a{ `>a}`<i{
+xnoremap <buffer> <silent> ,a) `>a)`<i(
+xnoremap <buffer> <silent> ,a( `>a)`<i(
+xnoremap <buffer> <silent> ,a' `>a'`<i'
+xnoremap <buffer> <silent> ,a] `>a]`<i[
+xnoremap <buffer> <silent> ,a[ `>a]`<i[
+xnoremap <buffer> <silent> ,a" `>a"`<i"
+xnoremap <buffer> <silent> ,a` `>a``<i`
+nmap <buffer> gf <Plug>RailsFind
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=#\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=syntaxcomplete#Complete
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'coffee'
+setlocal filetype=coffee
+endif
+setlocal foldcolumn=0
+set nofoldenable
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=indent
+setlocal foldmethod=indent
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=RailsIncludeexpr()
+setlocal indentexpr=GetCoffeeIndent(v:lnum)
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0],0),0.,=else,=when,=catch,=finally
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,$
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal nomacmeta
+setlocal makeprg=coffee\ -c\ \ $*\ app/assets/javascripts/backbone/views/orders/show/view_by_tickets_spec.js.coffee
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/backbone/views/orders/show/view_by_tickets_spec,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include,
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+set relativenumber
+setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.rb
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'coffee'
+setlocal syntax=coffee
+endif
+setlocal tabstop=2
+setlocal tags=~/workspace/pos.rb/tmp/tags,~/workspace/pos.rb/.git/tags,./tags,tags,~/workspace/pos.rb/tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 18 - ((17 * winheight(0) + 33) / 67)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+18
+normal! 014|
+wincmd w
+argglobal
+edit app/assets/javascripts/backbone/models/v2/order.js.coffee
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
+xnoremap <buffer> <silent> ,a} `>a}`<i{
+xnoremap <buffer> <silent> ,a{ `>a}`<i{
+xnoremap <buffer> <silent> ,a) `>a)`<i(
+xnoremap <buffer> <silent> ,a( `>a)`<i(
+xnoremap <buffer> <silent> ,a' `>a'`<i'
+xnoremap <buffer> <silent> ,a] `>a]`<i[
+xnoremap <buffer> <silent> ,a[ `>a]`<i[
+xnoremap <buffer> <silent> ,a" `>a"`<i"
+xnoremap <buffer> <silent> ,a` `>a``<i`
+nmap <buffer> gf <Plug>RailsFind
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=#\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=syntaxcomplete#Complete
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'coffee'
+setlocal filetype=coffee
+endif
+setlocal foldcolumn=0
+set nofoldenable
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=indent
+setlocal foldmethod=indent
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=RailsIncludeexpr()
+setlocal indentexpr=GetCoffeeIndent(v:lnum)
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0],0),0.,=else,=when,=catch,=finally
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,$
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal nomacmeta
+setlocal makeprg=coffee\ -c\ \ $*\ app/assets/javascripts/backbone/models/v2/order.js.coffee
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/backbone/models/v2/order,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+set relativenumber
+setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.rb
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'coffee'
+setlocal syntax=coffee
+endif
+setlocal tabstop=2
+setlocal tags=~/workspace/pos.rb/tmp/tags,~/workspace/pos.rb/.git/tags,./tags,tags,~/workspace/pos.rb/tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 46 - ((33 * winheight(0) + 33) / 67)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+46
+normal! 015|
+wincmd w
+argglobal
+edit app/assets/javascripts/backbone/collections/base/paginated_base.js
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
+xnoremap <buffer> <silent> ,a} `>a}`<i{
+xnoremap <buffer> <silent> ,a{ `>a}`<i{
+xnoremap <buffer> <silent> ,a) `>a)`<i(
+xnoremap <buffer> <silent> ,a( `>a)`<i(
+xnoremap <buffer> <silent> ,a' `>a'`<i'
+xnoremap <buffer> <silent> ,a] `>a]`<i[
+xnoremap <buffer> <silent> ,a[ `>a]`<i[
+xnoremap <buffer> <silent> ,a" `>a"`<i"
+xnoremap <buffer> <silent> ,a` `>a``<i`
+nmap <buffer> gf <Plug>RailsFind
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=j1,J1
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'javascript'
+setlocal filetype=javascript
+endif
+setlocal foldcolumn=0
+set nofoldenable
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=indent
+setlocal foldmethod=indent
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=RailsIncludeexpr()
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,$
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal nomacmeta
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/backbone/collections/base/paginated_base,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include,
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+set relativenumber
+setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.rb
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'javascript'
+setlocal syntax=javascript
+endif
+setlocal tabstop=2
+setlocal tags=~/workspace/pos.rb/tmp/tags,~/workspace/pos.rb/.git/tags,./tags,tags,~/workspace/pos.rb/tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 22 - ((21 * winheight(0) + 33) / 67)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+22
+normal! 06|
+wincmd w
+argglobal
+edit app/assets/javascripts/backbone/views/orders/show.js.coffee
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
+xnoremap <buffer> <silent> ,a} `>a}`<i{
+xnoremap <buffer> <silent> ,a{ `>a}`<i{
+xnoremap <buffer> <silent> ,a) `>a)`<i(
+xnoremap <buffer> <silent> ,a( `>a)`<i(
+xnoremap <buffer> <silent> ,a' `>a'`<i'
+xnoremap <buffer> <silent> ,a] `>a]`<i[
+xnoremap <buffer> <silent> ,a[ `>a]`<i[
+xnoremap <buffer> <silent> ,a" `>a"`<i"
+xnoremap <buffer> <silent> ,a` `>a``<i`
+nmap <buffer> gf <Plug>RailsFind
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=#\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=syntaxcomplete#Complete
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'coffee'
+setlocal filetype=coffee
+endif
+setlocal foldcolumn=0
+set nofoldenable
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=indent
+setlocal foldmethod=indent
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=RailsIncludeexpr()
+setlocal indentexpr=GetCoffeeIndent(v:lnum)
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0],0),0.,=else,=when,=catch,=finally
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,$
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal nomacmeta
+setlocal makeprg=coffee\ -c\ \ $*\ app/assets/javascripts/backbone/views/orders/show.js.coffee
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/backbone/views/orders/show,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include,
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+set relativenumber
+setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.rb
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'coffee'
+setlocal syntax=coffee
+endif
+setlocal tabstop=2
+setlocal tags=~/workspace/pos.rb/tmp/tags,~/workspace/pos.rb/.git/tags,./tags,tags,~/workspace/pos.rb/tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 114 - ((33 * winheight(0) + 33) / 67)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+114
+normal! 02|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 70 + 141) / 283)
+exe 'vert 2resize ' . ((&columns * 70 + 141) / 283)
+exe 'vert 3resize ' . ((&columns * 70 + 141) / 283)
+exe 'vert 4resize ' . ((&columns * 70 + 141) / 283)
+tabedit app/assets/javascripts/backbone/collections/v2/order_items.js.coffee
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -293,7 +853,7 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
-setlocal noautoindent
+setlocal autoindent
 setlocal balloonexpr=
 setlocal nobinary
 setlocal bufhidden=
@@ -304,8 +864,8 @@ setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/
-setlocal commentstring=/*%s*/
+setlocal comments=:#
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -321,8 +881,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'css'
-setlocal filetype=css
+if &filetype != 'coffee'
+setlocal filetype=coffee
 endif
 setlocal foldcolumn=0
 set nofoldenable
@@ -331,8 +891,8 @@ setlocal foldexpr=0
 setlocal foldignore=#
 setlocal foldlevel=0
 setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
+set foldmethod=indent
+setlocal foldmethod=indent
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
@@ -342,19 +902,19 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=2
 setlocal imsearch=2
-setlocal include=^\\s*@import\\s\\+\\%(url(\\)\\=
+setlocal include=
 setlocal includeexpr=RailsIncludeexpr()
-setlocal indentexpr=GetCSSIndent()
-setlocal indentkeys=0{,0},!^F,o,O
+setlocal indentexpr=GetCoffeeIndent(v:lnum)
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0],0),0.,=else,=when,=catch,=finally
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
+setlocal iskeyword=@,48-57,_,192-255,$
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 set list
 setlocal list
 setlocal nomacmeta
-setlocal makeprg=
+setlocal makeprg=coffee\ -c\ \ $*\ app/assets/javascripts/backbone/collections/v2/order_items.js.coffee
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
@@ -362,13 +922,14 @@ setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=csscomplete#CompleteCSS
-setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/ticket-evo,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include,
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/backbone/collections/v2/order_items,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include,
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
-setlocal norelativenumber
+set relativenumber
+setlocal relativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -380,12 +941,12 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%9*\ NORMAL\ %9*%{g:airline_left_sep}%9*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %9*%{g:airline_left_sep}\ public/stylesheets/ticket-evo.css%#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%9*%<%=%9*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%9*\ %{strlen(&filetype)>0?&filetype:''}\ %9*%{g:airline_right_sep}%9*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %9*%{g:airline_right_sep}%9*\ %3p%%\ :%3l:%3c\ 
+setlocal statusline=
 setlocal suffixesadd=.rb
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'css'
-setlocal syntax=css
+if &syntax != 'coffee'
+setlocal syntax=coffee
 endif
 setlocal tabstop=2
 setlocal tags=~/workspace/pos.rb/tmp/tags,~/workspace/pos.rb/.git/tags,./tags,tags,~/workspace/pos.rb/tags
@@ -397,15 +958,15 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 665 - ((33 * winheight(0) + 34) / 68)
+let s:l = 15 - ((14 * winheight(0) + 33) / 67)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-665
-normal! 0
+15
+normal! 034|
 wincmd w
 argglobal
-edit public/stylesheets/vendor-overrides.css
+edit app/assets/javascripts/backbone/models/base/base_model.js.coffee
 let s:cpo_save=&cpo
 set cpo&vim
 nmap <buffer> gf <Plug>RailsTabFind
@@ -424,7 +985,7 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
-setlocal noautoindent
+setlocal autoindent
 setlocal balloonexpr=
 setlocal nobinary
 setlocal bufhidden=
@@ -435,8 +996,8 @@ setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/
-setlocal commentstring=/*%s*/
+setlocal comments=:#
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -450,10 +1011,10 @@ setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=
+setlocal errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
 setlocal expandtab
-if &filetype != 'css'
-setlocal filetype=css
+if &filetype != 'coffee'
+setlocal filetype=coffee
 endif
 setlocal foldcolumn=0
 set nofoldenable
@@ -462,8 +1023,8 @@ setlocal foldexpr=0
 setlocal foldignore=#
 setlocal foldlevel=0
 setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
+set foldmethod=indent
+setlocal foldmethod=indent
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
@@ -473,19 +1034,19 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=2
 setlocal imsearch=2
-setlocal include=^\\s*@import\\s\\+\\%(url(\\)\\=
+setlocal include=
 setlocal includeexpr=RailsIncludeexpr()
-setlocal indentexpr=GetCSSIndent()
-setlocal indentkeys=0{,0},!^F,o,O
+setlocal indentexpr=GetCoffeeIndent(v:lnum)
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0],0),0.,=else,=when,=catch,=finally
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
+setlocal iskeyword=@,48-57,_,192-255,$
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 set list
 setlocal list
 setlocal nomacmeta
-setlocal makeprg=
+setlocal makeprg=coffee\ -c\ \ $*\ ~/workspace/pos.rb/app/assets/javascripts/backbone/models/base/base_model.js.coffee
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
@@ -493,13 +1054,14 @@ setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=csscomplete#CompleteCSS
-setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/vendor-overrides,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include,
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,~/workspace/pos.rb,~/workspace/pos.rb/app,~/workspace/pos.rb/app/models,~/workspace/pos.rb/app/controllers,~/workspace/pos.rb/app/helpers,~/workspace/pos.rb/config,~/workspace/pos.rb/lib,~/workspace/pos.rb/app/views,~/workspace/pos.rb/app/views/backbone/models/base/base_model,~/workspace/pos.rb/public,~/workspace/pos.rb/spec,~/workspace/pos.rb/spec/models,~/workspace/pos.rb/spec/controllers,~/workspace/pos.rb/spec/helpers,~/workspace/pos.rb/spec/views,~/workspace/pos.rb/spec/lib,~/workspace/pos.rb/spec/requests,~/workspace/pos.rb/spec/integration,~/workspace/pos.rb/app/*,~/workspace/pos.rb/vendor,~/workspace/pos.rb/vendor/plugins/*/lib,~/workspace/pos.rb/vendor/plugins/*/test,~/workspace/pos.rb/vendor/rails/*/lib,~/workspace/pos.rb/vendor/rails/*/test,/usr/include
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
-setlocal norelativenumber
+set relativenumber
+setlocal relativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -511,12 +1073,12 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%2*%{AirlineModePrefix()}%3*%{g:airline_left_sep}%4*%{g:airline_enable_fugitive&&exists('g:loaded_fugitive')?\ g:airline_fugitive_prefix.fugitive#head():''}\ %5*%{g:airline_left_sep}%*\ %f%m\ %#warningmsg#%{g:airline_enable_syntastic&&exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*%<%=%6*%{&ro?\ g:airline_readonly_symbol\ :''}%q%{&previewwindow?'[preview]':''}%*\ %{strlen(&filetype)>0?&filetype:''}\ %5*%{g:airline_right_sep}%4*\ %{strlen(&fileencoding)>0?&fileencoding:''}%{strlen(&fileformat)>0?'['.&fileformat.']':''}\ %3*%{g:airline_right_sep}%2*\ %3p%%\ :%3l:%3c\ 
+setlocal statusline=
 setlocal suffixesadd=.rb
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'css'
-setlocal syntax=css
+if &syntax != 'coffee'
+setlocal syntax=coffee
 endif
 setlocal tabstop=2
 setlocal tags=~/workspace/pos.rb/tmp/tags,~/workspace/pos.rb/.git/tags,./tags,tags,~/workspace/pos.rb/tags
@@ -528,14 +1090,13 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 25 - ((24 * winheight(0) + 34) / 68)
+let s:l = 13 - ((12 * winheight(0) + 33) / 67)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
-normal! 09l
+13
+normal! 03|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 141 + 141) / 283)
 exe 'vert 2resize ' . ((&columns * 141 + 141) / 283)
 tabnext 1

@@ -1,6 +1,7 @@
 
 "General
   let mapleader = ','
+  nmap <leader>H :help 
   map ; :
   nmap <leader>qq :q!<cr>
   noremap ;; ;
@@ -31,7 +32,6 @@
 "Split stuff
   nmap <leader>v :vnew<cr>
   map <leader>h :new<cr>
-  map <leader>H :botright new<cr>
   map <leader>V :vsp<cr>
 "resize windows
   nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -133,3 +133,16 @@
       map <silent><leader>cc  :CoffeeCompile vert<cr>
       map <silent><leader>cr  :CoffeeRun<cr>
       map <silent><leader>cp  :! coffee --compile %:p<cr>
+ "Markdown Stuff
+      map <silent><leader>md  :call MarkdownPreview()<cr>
+      function! MarkdownPreview()
+          "compile the markdown
+            let buffer   = bufname("%")
+          "create a scratch split
+            vsplit __MARKDOWN_PREVIEW__
+            normal! ggdG
+            setlocal buftype=nofile
+          "insert compiled html
+            execute "r ! /Users/rich/bin/markdown " . buffer . " | lynx -stdin -dump"
+
+      endfunction

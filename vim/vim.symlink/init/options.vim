@@ -5,7 +5,6 @@
   "set guioptions-=rL " No scrollbar
   set visualbell      " Suppress bell
   set nocursorline    " slow in terminal
-  set number          " number lines
   "change insert mode color in tmux
     if exists('$TMUX')
       let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
@@ -36,10 +35,16 @@
     nnoremap <silent> <space> :nohlsearch<Bar>:echo<cr>""
 " Behavior
   "auto center cursor
-  set so=999
-  set splitright
-  set splitbelow
-  set mouse=a "use mouse in terminal mode
+    set so=999
+    set splitright
+    set splitbelow
+    set mouse=a "use mouse in terminal mode
+  " Toggle Numbers
+    set relativenumber
+    set number
+    autocmd InsertEnter * :set number
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
   "Spell Checking
     nmap <silent> <leader>s :set spell!<CR>
   "Winheight

@@ -1,5 +1,8 @@
+  gcl(){
 #standard
-  alias gcl='git checkout - '
+    branch=$( git reflog | grep checkout | sed 's/.*to //' | grep -v `git branch | grep '*' | awk '{print $3}'` | head -1 )
+    git checkout $branch
+  }
   alias gcm='git checkout master '
   alias gc='git commit'
   alias gd='git diff'
