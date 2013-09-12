@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/rich/Code/Projects/Sites/Richsoni/flat/app/assets'
+let g:netrw_dirhist_2='/Users/rich/Code/Projects/Sites/Richsoni/flat/app'
+let g:netrw_dirhist_3='/Users/rich/Code/Projects/Sites/Richsoni/flat'

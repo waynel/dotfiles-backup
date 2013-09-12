@@ -10,6 +10,7 @@
   nmap QQ :q!<cr>
   nmap WW :w!<cr>
   nmap EE :e!<cr>
+  nmap CC :ccl<cr>
   "Search Selected Text
     vmap * y/<c-r>"<cr>
   "colors
