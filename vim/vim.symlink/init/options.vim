@@ -4,7 +4,7 @@
   "set guioptions-=e  " Use text tabs
   "set guioptions-=rL " No scrollbar
   set visualbell      " Suppress bell
-  set nocursorline    " slow in terminal
+  set cursorline    " slow in terminal
   "change insert mode color in tmux
     if exists('$TMUX')
       let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
@@ -40,11 +40,11 @@
     set splitbelow
     set mouse=a "use mouse in terminal mode
   " Toggle Numbers
-  "  set relativenumber
+    set relativenumber
     set number
-  "  autocmd InsertEnter * :set number
-  "  autocmd InsertEnter * :set norelativenumber
-  "  autocmd InsertLeave * :set relativenumber
+    autocmd InsertEnter * :set number
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
   "Spell Checking
     nmap <silent> <leader>s :set spell!<CR>
   "Winheight
