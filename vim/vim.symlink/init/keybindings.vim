@@ -1,91 +1,45 @@
+"; keybindings (circa "http://reefpoints.dockyard.com/2013/09/11/vim-staying-on-home-row-via-map.html)
+  nmap ; :
+  nnoremap ;; ;
+  inoremap ;a <Esc>
+  inoremap ;s <C-O>:w!<Cr>
+  nnoremap ;s :w!<cr>
+  inoremap ;d <Esc>:w!<Cr>
+  inoremap ;v <C-O>:r!pbpaste<Cr>
+  nnoremap ;v :r!pbpaste<Cr>
+  nnoremap CL c$
+  nnoremap CH c0
+  nnoremap DL d$
+  nnoremap DH  d0
 "General
-  let mapleader = ','
-  nmap <leader>H :help 
-  map ; :
-  nmap <leader>qq :q!<cr>
-  noremap ;; ;
-  map Y "+y
-  nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
-  nnoremap <Leader><Space> za
-  nmap QQ :q!<cr>
-  nmap WW :w!<cr>
-  nmap EE :e!<cr>
-  nmap CC :ccl<cr>
+  let mapleader=","
+  let maplocalleader=" "
+  nnoremap <leader>H :help 
+  vnoremap Y "+y
+  nnoremap QQ :q!<cr>
+  nnoremap WW :w!<cr>
+  nnoremap EE :e!<cr>
+  nnoremap CC :ccl<cr>
   "Search Selected Text
-    vmap * y/<c-r>"<cr>
-  "colors
-    nmap <leader>sfj :setf javascript<cr>
-    nmap <leader>sfr :setf ruby<cr>
-    nmap <leader>sfh :setf ham<cr>
+    vnoremap * y/<c-r>"<cr>
 " save
-  map <leader>ss :mksession! ~/.vim/sessions/last.vim<cr>
-  map <leader>SS :mksession! ~/.vim/sessions/
-  map <leader>oo :source ~/.vim/sessions/last.vim<cr>
-  map <leader>OO :source ~/.vim/sessions/
+  noremap <leader>ss :mksession! ~/.vim/sessions/last.vim<cr>
+  noremap <leader>SS :mksession! ~/.vim/sessions/
+  noremap <leader>oo :source ~/.vim/sessions/last.vim<cr>
+  noremap <leader>OO :source ~/.vim/sessions/
 " run scrap ruby
-  nmap <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
+  nnoremap <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
 "Reload
-  nmap <leader>rv :source $MYVIMRC<cr>
-  nmap <leader>rs :call ReloadAllSnippets()<cr>
-" Buffer navigation
-  nmap <c-h> <c-w>h
-  nmap <c-j> <c-w>j
-  nmap <c-k> <c-w>k
-  nmap <c-l> <c-w>l
+  nnoremap <leader>rv :source $MYVIMRC<cr>
+  nnoremap <leader>rs :call ReloadAllSnippets()<cr>
+  nnoremap <leader>ek :vsp ~/.vim/init/keybindings.vim<cr>
+  nnoremap <leader>eo :vsp ~/.vim/init/options.vim<cr>
 "Split stuff
-  nmap <leader>v :vnew<cr>
-  map <leader>h :new<cr>
-  map <leader>V :vsp<cr>
-"resize windows
-  nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-  nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
-"Title Bar
-  nmap <leader>t :set title titlestring=
-"Pretty JSON
-  nmap <silent><leader>j :%!python -m json.tool<CR>
-"?????
-  omap in( :<c-u>normal! f(vi(<cr>
-  omap in" :<c-u>normal! f"vi"<cr>
-  omap il( :<c-u>normal! F)vi(<cr>
-  omap il" :<c-u>normal! F"vi"<cr>
-  " Copy current file path
-  map <silent> <D-C> :let @* = expand("%")<CR>:echo "Copied: ".expand("%")<CR>
-  map <leader>C :let @* = expand("%").":".line(".")<CR>:echo "Copied: ".expand("%").":".line(".")<CR>
-"Color Scheme Shortcuts
-  nmap <leader>csl :colorscheme Tomorrow<cr>
-  nmap <leader>csd :colorscheme Tomorrow-Night-Eighties<cr>
-  nmap <leader>csi :colorscheme Tomorrow-Night-Bright<cr>
-  nmap <leader>csb :colorscheme Tomorrow-Night-Blue<cr>
-  nmap <leader>css :set background=dark<cr>:colorscheme solarized<cr>
+  nnoremap <leader>v :vnew<cr>
+  noremap <leader>h :new<cr>
 "Swap Lines Like TextMate
-  function! s:swap_lines(n1, n2)
-      let line1 = getline(a:n1)
-      let line2 = getline(a:n2)
-      call setline(a:n1, line2)
-      call setline(a:n2, line1)
-  endfunction
-
-  function! s:swap_up()
-      let n = line('.')
-      if n == 1
-          return
-      endif
-
-      call s:swap_lines(n, n - 1)
-      exec n - 1
-  endfunction
-
-  function! s:swap_down()
-      let n = line('.')
-      if n == line('$')
-          return
-      endif
-
-      call s:swap_lines(n, n + 1)
-      exec n + 1
-  endfunction
-  noremap <silent> <c-k> :call <SID>swap_up()<CR>
-  noremap <silent> <c-j> :call <SID>swap_down()<CR>
+  nnoremap <C-J> ddp
+  nnoremap <C-K> ddkP
   "clear unused buffers
   function! CloseUnloadedBuffers()
       let lastBuffer = bufnr('$')
@@ -102,44 +56,42 @@
   endfunction
 "plugins
   "Ctrl-P
-    nmap <leader>f :CtrlP<cr>
+    nnoremap <leader>f :CtrlP<cr>
   "Tabular
-    map  <leader>=  :Tabularize /
+    nnoremap  <leader>=  :Tabularize /
   "Gundo
-    nmap <leader>u :GundoToggle<cr>
+    nnoremap <leader>u :GundoToggle<cr>
   "Ag
-    nmap <leader>a :Ag! -QS<space>
-    nmap <leader>A :AgFromSearch -QS<cr>
-    vmap <silent> <leader>a y:Ag!<space><c-r>"<cr>
-    vmap <silent> <leader>A y:AgFile<space><c-r>"<cr>
+    nnoremap <leader>a :Ag! -QS<space>
+    nnoremap <leader>A :AgFromSearch -QS<cr>
+    vnoremap <silent> <leader>a y:Ag!<space><c-r>"<cr>
+    vnoremap <silent> <leader>A y:AgFile<space><c-r>"<cr>
   "Zoomwin
-    nmap <leader><leader> :ZoomWin<cr>
+    nnoremap <leader><leader> :ZoomWin<cr>
   "Git Stuff
-    map <silent> <leader>gb :Gblame<cr>
-    map <silent> <leader>gc :Gcommit<cr>
-    map <silent> <leader>gs :Gstatus<cr>
-    map <silent> <leader>gd :Gdiff<cr>
-    map <silent> <leader>gh :Gbrowse<cr>
-    map <silent> <leader>ge :Gedit<cr>
-    map <silent> <leader>gl :Glog<cr>
+    nnoremap <silent> <leader>gb :Gblame<cr>
+    nnoremap <silent> <leader>gc :Gcommit<cr>
+    nnoremap <silent> <leader>gs :Gstatus<cr>
+    nnoremap <silent> <leader>gd :Gdiff<cr>
+    nnoremap <silent> <leader>gh :Gbrowse<cr>
+    nnoremap <silent> <leader>ge :Gedit<cr>
+    nnoremap <silent> <leader>gl :Glog<cr>
   "Vimux Stuff
     "this is just annoying
-      map <silent><leader>r :<cr>
+      noremap <silent><leader>r :<cr>
     "prompt for a command to run
-      map <leader>RR  :VimuxPromptCommand<cr>
-      map <leader>rr  Vy:call VimuxRunCommand('<c-r>"')<CR>
-      vmap <leader>rr  y:call VimuxRunCommand('<c-r>"')<CR>
-      map <leader>rl  :VimuxRunLastCommand<cr>
-      map <leader>rx  :VimuxCloseRunner<cr>
-      map <leader>rc  :let VimuxUseNearestPane = 1<cr>
+      nnoremap <leader>RR  :VimuxPromptCommand<cr>
+      nnoremap <leader>rr  Vy:call VimuxRunCommand('<c-r>"')<CR>
+      vnoremap <leader>rr  y:call VimuxRunCommand('<c-r>"')<CR>
+      nnoremap <leader>rl  :VimuxRunLastCommand<cr>
+      nnoremap <leader>rx  :VimuxCloseRunner<cr>
+      nnoremap <leader>rc  :let VimuxUseNearestPane = 1<cr>
  "Coffee Stuff
-      map <silent><leader>cc  :CoffeeCompile vert<cr>
-      map <silent><leader>cr  :CoffeeRun<cr>
-      map <silent><leader>cp  :! coffee --compile %:p<cr>
- "Numbers Toggle
-   nnoremap <silent><leader>nu :NumbersToggle<CR>
+      nnoremap <silent><leader>cc  :CoffeeCompile vert<cr>
+      nnoremap <silent><leader>cr  :CoffeeRun<cr>
+      nnoremap <silent><leader>cp  :! coffee --compile %:p<cr>
  "Markdown Stuff
-      map <silent><leader>md  :call MarkdownPreview()<cr>
+      nnoremap <silent><leader>md  :call MarkdownPreview()<cr>
       function! MarkdownPreview()
           "compile the markdown
             let buffer   = bufname("%")
