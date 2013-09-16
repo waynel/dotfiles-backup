@@ -42,9 +42,12 @@
   " Toggle Numbers
     set relativenumber
     set number
-    autocmd InsertEnter * :set number
-    autocmd InsertEnter * :set norelativenumber
-    autocmd InsertLeave * :set relativenumber
+    aug linenumbers
+      au!
+      au InsertEnter * :set number
+      au InsertEnter * :set norelativenumber
+      au InsertLeave * :set relativenumber
+    augroup end
   "Spell Checking
     nmap <silent> <leader>s :set spell!<CR>
   "Winheight

@@ -38,6 +38,7 @@ nn WW :echo("Use ;s")
 "Reload
   nn <leader>rv :source $MYVIMRC<cr>
   nn <leader>rs :call ReloadAllSnippets()<cr>
+  nn <leader>erc :vsp ~/.vimrc<cr>
   nn <leader>ek :vsp ~/.vim/init/keybindings.vim<cr>
   nn <leader>ea :vsp ~/.vim/init/abbreviations.vim<cr>
   nn <leader>eo :vsp ~/.vim/init/options.vim<cr>
