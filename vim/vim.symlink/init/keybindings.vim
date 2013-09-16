@@ -14,10 +14,12 @@
   let mapleader=","
   let maplocalleader=" "
   "quicker change and deletes
-  ono L $
+  ono L g_
   ono H 0
-  nn L $
+  nn L g_
   nn H 0
+  vn L g_
+  vn H 0
   nn <leader>H :help 
   "state shortcuts
   nn QQ :q!<cr>
