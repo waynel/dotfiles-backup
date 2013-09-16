@@ -16,10 +16,8 @@ nn WW :echo("Use ;s")
   let mapleader=","
   let maplocalleader=" "
   "quicker change and deletes
-  nn CL c$
-  nn CH c0
-  nn DL d$
-  nn DH  d0
+  ono L $
+  ono H 0
   nn <leader>H :help 
   "state shortcuts
   nn QQ :q!<cr>
@@ -34,7 +32,7 @@ nn WW :echo("Use ;s")
   no <leader>oo :source ~/.vim/sessions/last.vim<cr>
   no <leader>OO :source ~/.vim/sessions/
 " run scrap ruby
-  nnoremap <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
+  nn <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
 "Reload
   nn <leader>rv :source $MYVIMRC<cr>
   nn <leader>rs :call ReloadAllSnippets()<cr>
