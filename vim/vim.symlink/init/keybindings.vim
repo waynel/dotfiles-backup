@@ -1,45 +1,52 @@
+"muscle memory helpers
+nn WW :echo("Use ;s")
+"inoremap <esc> <nop>
 "; keybindings (circa "http://reefpoints.dockyard.com/2013/09/11/vim-staying-on-home-row-via-map.html)
-  nmap ; :
-  nnoremap ;; ;
-  inoremap ;a <Esc>
-  inoremap ;s <C-O>:w!<Cr>
-  nnoremap ;s :w!<cr>
-  inoremap ;d <Esc>:w!<Cr>
-  inoremap ;v <C-O>:r!pbpaste<Cr>
-  nnoremap ;v :r!pbpaste<Cr>
-  nnoremap CL c$
-  nnoremap CH c0
-  nnoremap DL d$
-  nnoremap DH  d0
+  nm ; :
+  nn ;; ;
+  ino ;a <Esc>
+  ino ;s <C-O>:w!<Cr>
+  nn ;s :w!<cr>
+  ino ;d <Esc>:w!<Cr>
+  "paste help of os x
+  ino ;v <C-O>:r!pbpaste<Cr>
+  nn ;v :r!pbpaste<Cr>
+  vn Y "+y
 "General
   let mapleader=","
   let maplocalleader=" "
-  nnoremap <leader>H :help 
-  vnoremap Y "+y
-  nnoremap QQ :q!<cr>
-  nnoremap WW :w!<cr>
-  nnoremap EE :e!<cr>
-  nnoremap CC :ccl<cr>
+  "quicker change and deletes
+  nn CL c$
+  nn CH c0
+  nn DL d$
+  nn DH  d0
+  nn <leader>H :help 
+  "state shortcuts
+  nn QQ :q!<cr>
+  "nnoremap WW :w!<cr>
+  nn EE :e!<cr>
+  nn CC :ccl<cr>
   "Search Selected Text
-    vnoremap * y/<c-r>"<cr>
+    vn * y/<c-r>"<cr>
 " save
-  noremap <leader>ss :mksession! ~/.vim/sessions/last.vim<cr>
-  noremap <leader>SS :mksession! ~/.vim/sessions/
-  noremap <leader>oo :source ~/.vim/sessions/last.vim<cr>
-  noremap <leader>OO :source ~/.vim/sessions/
+  no <leader>ss :mksession! ~/.vim/sessions/last.vim<cr>
+  no <leader>SS :mksession! ~/.vim/sessions/
+  no <leader>oo :source ~/.vim/sessions/last.vim<cr>
+  no <leader>OO :source ~/.vim/sessions/
 " run scrap ruby
   nnoremap <leader>rb :w! ~/scrap.rb<cr>:r !ruby %<cr>
 "Reload
-  nnoremap <leader>rv :source $MYVIMRC<cr>
-  nnoremap <leader>rs :call ReloadAllSnippets()<cr>
-  nnoremap <leader>ek :vsp ~/.vim/init/keybindings.vim<cr>
-  nnoremap <leader>eo :vsp ~/.vim/init/options.vim<cr>
+  nn <leader>rv :source $MYVIMRC<cr>
+  nn <leader>rs :call ReloadAllSnippets()<cr>
+  nn <leader>ek :vsp ~/.vim/init/keybindings.vim<cr>
+  nn <leader>ea :vsp ~/.vim/init/abbreviations.vim<cr>
+  nn <leader>eo :vsp ~/.vim/init/options.vim<cr>
 "Split stuff
-  nnoremap <leader>v :vnew<cr>
-  noremap <leader>h :new<cr>
+  nn <leader>v :vnew<cr>
+  no <leader>h :new<cr>
 "Swap Lines Like TextMate
-  nnoremap <C-J> ddp
-  nnoremap <C-K> ddkP
+  nn <C-J> ddp
+  nn <C-K> ddkP
   "clear unused buffers
   function! CloseUnloadedBuffers()
       let lastBuffer = bufnr('$')
@@ -56,42 +63,42 @@
   endfunction
 "plugins
   "Ctrl-P
-    nnoremap <leader>f :CtrlP<cr>
+    nn <leader>f :CtrlP<cr>
   "Tabular
-    nnoremap  <leader>=  :Tabularize /
+    nn  <leader>=  :Tabularize /
   "Gundo
-    nnoremap <leader>u :GundoToggle<cr>
+    nn <leader>u :GundoToggle<cr>
   "Ag
-    nnoremap <leader>a :Ag! -QS<space>
-    nnoremap <leader>A :AgFromSearch -QS<cr>
-    vnoremap <silent> <leader>a y:Ag!<space><c-r>"<cr>
-    vnoremap <silent> <leader>A y:AgFile<space><c-r>"<cr>
+    nn <leader>a :Ag! -QS<space>
+    nn <leader>A :AgFromSearch -QS<cr>
+    vn <silent> <leader>a y:Ag!<space><c-r>"<cr>
+    vn <silent> <leader>A y:AgFile<space><c-r>"<cr>
   "Zoomwin
-    nnoremap <leader><leader> :ZoomWin<cr>
+    nn <leader><leader> :ZoomWin<cr>
   "Git Stuff
-    nnoremap <silent> <leader>gb :Gblame<cr>
-    nnoremap <silent> <leader>gc :Gcommit<cr>
-    nnoremap <silent> <leader>gs :Gstatus<cr>
-    nnoremap <silent> <leader>gd :Gdiff<cr>
-    nnoremap <silent> <leader>gh :Gbrowse<cr>
-    nnoremap <silent> <leader>ge :Gedit<cr>
-    nnoremap <silent> <leader>gl :Glog<cr>
+    nn <silent> <leader>gb :Gblame<cr>
+    nn <silent> <leader>gc :Gcommit<cr>
+    nn <silent> <leader>gs :Gstatus<cr>
+    nn <silent> <leader>gd :Gdiff<cr>
+    nn <silent> <leader>gh :Gbrowse<cr>
+    nn <silent> <leader>ge :Gedit<cr>
+    nn <silent> <leader>gl :Glog<cr>
   "Vimux Stuff
     "this is just annoying
-      noremap <silent><leader>r :<cr>
+      no <silent><leader>r :<cr>
     "prompt for a command to run
-      nnoremap <leader>RR  :VimuxPromptCommand<cr>
-      nnoremap <leader>rr  Vy:call VimuxRunCommand('<c-r>"')<CR>
-      vnoremap <leader>rr  y:call VimuxRunCommand('<c-r>"')<CR>
-      nnoremap <leader>rl  :VimuxRunLastCommand<cr>
-      nnoremap <leader>rx  :VimuxCloseRunner<cr>
-      nnoremap <leader>rc  :let VimuxUseNearestPane = 1<cr>
+      nn <leader>RR  :VimuxPromptCommand<cr>
+      nn <leader>rr  Vy:call VimuxRunCommand('<c-r>"')<CR>
+      vn <leader>rr  y:call VimuxRunCommand('<c-r>"')<CR>
+      nn <leader>rl  :VimuxRunLastCommand<cr>
+      nn <leader>rx  :VimuxCloseRunner<cr>
+      nn <leader>rc  :let VimuxUseNearestPane = 1<cr>
  "Coffee Stuff
-      nnoremap <silent><leader>cc  :CoffeeCompile vert<cr>
-      nnoremap <silent><leader>cr  :CoffeeRun<cr>
-      nnoremap <silent><leader>cp  :! coffee --compile %:p<cr>
+      nn <silent><leader>cc  :CoffeeCompile vert<cr>
+      nn <silent><leader>cr  :CoffeeRun<cr>
+      nn <silent><leader>cp  :! coffee --compile %:p<cr>
  "Markdown Stuff
-      nnoremap <silent><leader>md  :call MarkdownPreview()<cr>
+      nn <silent><leader>md  :call MarkdownPreview()<cr>
       function! MarkdownPreview()
           "compile the markdown
             let buffer   = bufname("%")
