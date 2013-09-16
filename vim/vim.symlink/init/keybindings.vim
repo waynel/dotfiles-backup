@@ -1,5 +1,3 @@
-"muscle memory helpers
-nn WW :echo("Use ;s")
 "inoremap <esc> <nop>
 "; keybindings (circa "http://reefpoints.dockyard.com/2013/09/11/vim-staying-on-home-row-via-map.html)
   nm ; :
@@ -18,10 +16,12 @@ nn WW :echo("Use ;s")
   "quicker change and deletes
   ono L $
   ono H 0
+  nn L $
+  nn H 0
   nn <leader>H :help 
   "state shortcuts
   nn QQ :q!<cr>
-  "nnoremap WW :w!<cr>
+  nn WW :w!<cr>
   nn EE :e!<cr>
   nn CC :ccl<cr>
   "Search Selected Text
