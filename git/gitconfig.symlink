@@ -1,41 +1,42 @@
 ;shortcuts inside of git command
 [alias]
-	st = status
-	di = diff
-	co = checkout
-	ci = commit
-	br = branch
-	sta = stash
-	llog = log --date=local
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	ctags = !.git/hooks/ctags
+  st = status
+  di = diff
+  co = checkout
+  ci = commit
+  br = branch
+  sta = stash
+  llog = log --date=local
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  ctags = !.git/hooks/ctags
 ;dont compalain about whitespace when merging
 [apply]
-	whitespace = nowarn
+  whitespace = nowarn
 ;enable colors for the following commands
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
-	ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
 [branch]
   ;by default do git pull --rebase
   autosetuprebase = always
 [core]
-	excludesfile = /Users/rich/.gitignore_global
+  excludesfile = /Users/rich/.gitignore_global
   editor = "vim"
 [diff]
   tool = vimdiff
 [web]
   browser = open
 [user]
-	name = Rich Soni
-	email = rich@richsoni.com
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  name = Rich Soni
+  email = rich@richsoni.com
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-;[init]
-;	templatedir = ~/.git_template
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[url "git@github.com:"]
+    pushInsteadOf = git://github.com/
+    pushInsteadOf = https://github.com/
