@@ -1,6 +1,7 @@
 "inoremap <esc> <nop>
 "; keybindings (circa "http://reefpoints.dockyard.com/2013/09/11/vim-staying-on-home-row-via-map.html)
   nmap ; :
+  nmap \ @
   nnoremap ;; ;
   inoremap ;a <Esc>
   inoremap ;s <C-O>:w!<Cr>
@@ -74,6 +75,7 @@
     nnoremap <leader>A :AgFromSearch -QS<cr>
     vnoremap <silent> <leader>a y:Ag!<space><c-r>"<cr>
     vnoremap <silent> <leader>A y:AgFile<space><c-r>"<cr>
+    nnoremap <leader>g :silent execute "grep! -R ". shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>:redraw!<cr>
   "Zoomwin
     nnoremap <leader><leader> :ZoomWin<cr>
   "Git Stuff
