@@ -27,6 +27,14 @@
   nnoremap WW :w!<cr>
   nnoremap EE :e!<cr>
   nnoremap CC :ccl<cr>
+"Emacs Style Command Line Editing
+  cnoremap <C-A> <Home>
+  cnoremap <C-E> <End>
+  cnoremap <C-F> <Right>
+  cnoremap <C-B> <Left>
+  cnoremap <C-P> <Up>
+  cnoremap <C-N> <Down>
+  cnoremap <C-D> <Del>
   "Search Selected Text
     vnoremap * y/<c-r>"<cr>
 " save
@@ -75,7 +83,7 @@
     nnoremap <leader>A :AgFromSearch -QS<cr>
     vnoremap <silent> <leader>a y:Ag!<space><c-r>"<cr>
     vnoremap <silent> <leader>A y:AgFile<space><c-r>"<cr>
-    nnoremap <leader>g :silent execute "grep! -R ". shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>:redraw!<cr>
+    "nnoremap <leader>g :silent execute "grep! -R ". shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>:redraw!<cr>
   "Zoomwin
     nnoremap <leader><leader> :ZoomWin<cr>
   "Git Stuff
