@@ -18,6 +18,20 @@
   alias gsl='git stash list'
   alias gpoh='git push origin HEAD'
   alias gpr='git pull --rebase'
+  gbd(){
+    echo "Files To Remove:"
+    for br in $( git branch | grep $1 )
+    do
+      echo '  => ' $br
+    done
+
+    echo "Is this cool? [Yn]"
+    read INPUT
+    if [ $INPUT == 'Y' ];
+    then
+      git branch | grep $1 | xargs git branch -D
+    fi
+  }
   gcherry(){
     if [ $1 ];then
       name=$1
