@@ -1,3 +1,10 @@
+#MAC OS X STUFF
+  alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+  alias wifion="networksetup -setairportpower 'en1' on"
+  alias wifioff="networksetup -setairportpower 'en1' off"
+  alias wifils="airport -s"
+  wificd(){ networksetup -setairportnetwork 'en1' $1 $2; }
+  alias wifipwd="networksetup -getairportnetwork 'en1'"
 #General Stuff
   alias ..="cd .."
   alias ...="cd ../.."
