@@ -17,9 +17,6 @@ then
       # mission control
         tmux new-window -n MshnCtrl -t temux
         tmux split-window -p 45 -h -t temux
-        tmux split-window -p 80 -h -t temux
-        tmux split-window -p 65 -v -t temux
-        tmux split-window -p 30 -v -t temux
       # usage
         tmux new-window -n STAT -t temux
         tmux split-window -p 50 -h -t temux
@@ -50,9 +47,9 @@ then
     # mission control
       tmux send-keys -t temux:4.1 'chat' C-m
       tmux send-keys -t temux:4.2 'cat ~/.irssi/nicklistfifo' C-m
-      tmux send-keys -t temux:4.3 'sudo mtr gw.tedc.co' C-m
-      tmux send-keys -t temux:4.4 'sudo mtr google.com' C-m
-      tmux send-keys -t temux:4.5 'sudo mtr `my_router`' C-m
+#      tmux send-keys -t temux:4.3 'sudo mtr gw.tedc.co' C-m
+#      tmux send-keys -t temux:4.4 'sudo mtr google.com' C-m
+#      tmux send-keys -t temux:4.5 'sudo mtr `my_router`' C-m
     # disk usage
       tmux send-keys -t temux:5.1 'sudo htop' C-m
       tmux send-keys -t temux:5.2 'sudo iotop' C-m

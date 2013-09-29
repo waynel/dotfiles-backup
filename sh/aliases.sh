@@ -3,6 +3,7 @@
   alias wifion="networksetup -setairportpower 'en1' on"
   alias wifioff="networksetup -setairportpower 'en1' off"
   alias wifils="airport -s"
+  alias shared_computers="dns-sd -B _afpovertcp._tcp ."
   wificd(){ networksetup -setairportnetwork 'en1' $1 $2; }
   alias wifipwd="networksetup -getairportnetwork 'en1'"
 #General Stuff
@@ -17,44 +18,17 @@
 #Personal Stuff
   alias docs='cd ~/Documents'  
   alias code='cd ~/Code'
-  alias todo='cat -n ~/Documents/TodoLists/todo.txt'
-  todo.(){
-    echo "$1" >> ~/Documents/TodoLists/todo.txt;
-    todo;
-  } 
-  .todo(){
-    sed -i".bak" "$1d" ~/Documents/TodoLists/todo.txt;
-    todo;
-  }
-  alias wtodo='cat -n ~/Documents/TodoLists/work_todo.txt'
-  wtodo.(){
-    echo "$1" >> ~/Documents/TodoLists/work_todo.txt;
-    wtodo;
-  } 
-  .wtodo(){
-    sed -i".bak" "$1d" ~/Documents/TodoLists/work_todo.txt;
-    wtodo;
-  }
+  alias todo='vi ~/Dropbox/Todotxt/todo.txt'
   alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
   alias remote_canary='canary --remote-debugging-port=9222'
-#rename tab
-  rename_tab(){
-    echo -en "\033]0;$1\a"
-  }
-  rename_tab_pipe(){
-    output=`$1`;
-    rename_tab $output;
-  }
-  alias tabname='rename_tab_pipe pwd'
-  alias ktmux='tmux kill-session -t $1'
 #Ticket Evo Stuff
   alias temux='~/dotfiles/tmux_sessions/temux'
   alias retemux='tmux kill-session -t temux;sudo ls; ds restart;temux'
-  alias tegem='cd ~/workspace/ticketevolution-ruby; rename_tab "TE GEM"'
-  alias teex='cd ~/workspace/pos-chrome-extension/Robotester/tests/; rename_tab "TE GEM"'
+  alias tegem='cd ~/workspace/ticketevolution-ruby'
+  alias teex='cd ~/workspace/pos-chrome-extension/Robotester/tests/'
   alias tedocs='cd ~/Documents/TicketEvolution'
-  alias e='cd ~/workspace/exchange; rename_tab "Exchange"'
-  alias p='cd ~/workspace/pos.rb; rename_tab "POS"'
+  alias e='cd ~/workspace/exchange'
+  alias p='cd ~/workspace/pos.rb'
 #Rails Shortcuts
   alias tmux_rails='~/dotfiles/tmux_sessions/railsmux'
   alias r='rails'

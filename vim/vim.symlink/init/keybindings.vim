@@ -1,12 +1,11 @@
-"inoremap <esc> <nop>
 "; keybindings (circa "http://reefpoints.dockyard.com/2013/09/11/vim-staying-on-home-row-via-map.html)
-  nmap ; :
   nmap \ @
-  nnoremap ;; ;
+  nnoremap S :sh<cr>
   inoremap ;a <Esc>
   inoremap ;s <C-O>:w!<Cr>
   nnoremap ;s :w!<cr>
   inoremap ;d <Esc>:w!<Cr>
+  nnoremap ;e :Explore<cr>
   "paste help of os x
   inoremap ;v <C-O>:r!pbpaste<Cr>
   nnoremap ;v :r!pbpaste<Cr>
@@ -21,6 +20,10 @@
   nnoremap H 0
   vnoremap L g_
   vnoremap H 0
+  nnoremap WH <C-W>h:wq!<cr>
+  nnoremap WL <C-W>l:wq!<cr>
+  nnoremap WK <C-W>k:wq!<cr>
+  nnoremap WJ <C-W>j:wq!<cr>
   nnoremap <leader>H :help 
   "state shortcuts
   nnoremap QQ :q!<cr>
@@ -49,6 +52,7 @@
   nnoremap <leader>rs :call ReloadAllSnippets()<cr>
   nnoremap <leader>erc :vsp ~/.vimrc<cr>
   nnoremap <leader>ek :vsp ~/.vim/init/keybindings.vim<cr>
+  nnoremap <leader>egc :vsp ~/.gitconfig<cr>
   nnoremap <leader>ea :vsp ~/.vim/init/abbreviations.vim<cr>
   nnoremap <leader>eo :vsp ~/.vim/init/options.vim<cr>
 "Split stuff

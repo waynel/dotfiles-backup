@@ -61,3 +61,6 @@
 [submodule "vim/vim.symlink/todo.txt-vim"]
 	path = vim/vim.symlink/todo.txt-vim
 	url = git://github.com/freitass/todo.txt-vim.git
+[submodule "vim/vim.symlink/bundle/vim-ruby"]
+	path = vim/vim.symlink/bundle/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby.git
