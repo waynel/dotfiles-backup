@@ -12,6 +12,7 @@
   alias ls="ls -G"
   alias ll="ls -Ghla"
   alias lsd="ls -d */"
+  alias rm='rm -i'
 #META
 #Join the dots
   alias cdf='cd ~/dotfiles/'
