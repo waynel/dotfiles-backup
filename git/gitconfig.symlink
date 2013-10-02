@@ -11,6 +11,13 @@
   poh = push origin HEAD
   rhh = reset --hard HEAD
 
+  rb=rebase
+  rbm=rebase master
+  rbc=rebase --continue
+  rba=rebase --abort
+  rbc=rebase --continue
+  rbs=rebase --skip
+
   g = grep
   s = status --short
   bad = "!git status --short | grep --color=always ' M|UU|AA|DU'"
