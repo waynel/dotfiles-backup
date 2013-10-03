@@ -52,6 +52,7 @@
   nnoremap <leader>rs :call ReloadAllSnippets()<cr>
   nnoremap <leader>erc :vsp ~/.vimrc<cr>
   nnoremap <leader>ek :vsp ~/.vim/init/keybindings.vim<cr>
+  nnoremap <leader>tt :vsp ~/Dropbox/Todotxt/todo.txt<cr>
   nnoremap <leader>egc :vsp ~/.gitconfig<cr>
   nnoremap <leader>ea :vsp ~/.vim/init/abbreviations.vim<cr>
   nnoremap <leader>eo :vsp ~/.vim/init/options.vim<cr>

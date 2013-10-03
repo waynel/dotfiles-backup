@@ -1,2 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/rich/workspace/pos.rb/vendor/assets/stylesheets'
+let g:netrw_dirhist_2='/Users/rich/workspace/pos.rb/app/assets/stylesheets'
+let g:netrw_dirhist_3='/Users/rich/dotfiles.bak/ackrc.symlink'

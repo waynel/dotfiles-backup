@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "***********************"
+echo "Copying Old Files Back to $HOME"
+echo "***********************"
+BACKUP="$HOME/dotfiles.bak"
+
+DIRS=`find $HOME/dotfiles.bak -name "*.symlink" | grep -v "^\.\/\.git" | sed 's/\/$//'`;
+for DIR in $DIRS
+do
+  DIRNAME=${DIR##*/}
+  FILE=`echo $DIRNAME | sed 's/\.symlink//' | sed 's/^\.\///'`
+  DIR=`echo $DIR |  sed 's/^\.\///'`
+
+  cp -f $DIR $HOME/.$FILE
+done

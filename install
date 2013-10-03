@@ -4,12 +4,11 @@ echo "Getting Git Submodules:"
 echo "***********************"
 git submodule update --init
 
-DATE=`date '+%Y-%m-%d'`
-BACKUP="$HOME/dotfiles_circa_$DATE"
+BACKUP="$HOME/dotfiles.bak"
 echo "***********************"
 echo "Creating Backup Directory @ $BACKUP"
 echo "***********************"
-rm -rf $BACKUP > /dev/null
+rm -rf $BACKUP 2> /dev/null
 mkdir $BACKUP
 
 echo "***********************"
@@ -23,10 +22,8 @@ do
   FILE=`echo $DIRNAME | sed 's/\.symlink//' | sed 's/^\.\///'`
   DIR=`echo $DIR |  sed 's/^\.\///'`
   #**BACKUP**#
-  #mkdir so copy wont bitch
-  echo "Moving $HOME/.$FILE => $BACKUP/$DIR, (if it exists)"
-  mkdir -p $BACKUP/$DIR
-  mv $HOME/.$FILE $BACKUP/$DIR 2> /dev/null
+  echo "Moving $HOME/.$FILE => $BACKUP/${FILE}.symlink, (if it exists)"
+  mv $HOME/.$FILE $BACKUP/${FILE}.symlink 2> /dev/null
   echo "Linking $DIR -> $HOME/.$FILE"
   ln -s $PWD/$DIR $HOME/.$FILE
 done

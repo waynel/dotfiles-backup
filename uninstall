@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "***********************"
+echo "Removing All Sylinks"
+echo "***********************"
+SYMLINKS=`ls -la $HOME | grep dotfiles | cut -d ' ' -f 18`
+for SYMLINK in $SYMLINKS
+do
+  echo "Removing $SYMLINK";
+  rm $HOME/$SYMLINK;
+done
+
