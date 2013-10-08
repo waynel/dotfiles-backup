@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/rich/workspace/pos.rb/vendor/assets/stylesheets'
 let g:netrw_dirhist_2='/Users/rich/workspace/pos.rb/app/assets/stylesheets'
 let g:netrw_dirhist_3='/Users/rich/dotfiles.bak/ackrc.symlink'
+let g:netrw_dirhist_4='/Users/rich/workspace/pos.rb/app/assets/templates/email_addresses'
+let g:netrw_dirhist_5='/Users/rich/workspace/pos.rb/app/assets/templates/addresses'
+let g:netrw_dirhist_6='/usr/local/Cellar/macvim/7.4-70/MacVim.app/Contents/Resources/vim/runtime/doc'

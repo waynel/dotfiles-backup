@@ -1,3 +1,7 @@
+set nocompatible
+set path+=**
+filetype plugin on
+runtime macros/matchit.vim
 "UX Stuff
   set guifont=Inconsolata:h20
   set guioptions-=T  " Hide gui chrome
@@ -39,7 +43,7 @@
   "Spell Checking
     nmap <silent> <leader>s :set spell!<CR>
 "Other
-  set wildmode=list:longest "How Command Line Completion is Done
+  set wildmode=list:full
   let g:ruby_path = system('rvm current')
 set autoread
 set ttyfast
@@ -49,7 +53,7 @@ set ttimeout
 set shell=/bin/bash
 set noswapfile
 set nobackup
-
+set history=200
 
 "for vimux
 let g:VimuxOrientation = "h"

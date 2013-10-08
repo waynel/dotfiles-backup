@@ -1,43 +1,5 @@
-"; keybindings (circa "http://reefpoints.dockyard.com/2013/09/11/vim-staying-on-home-row-via-map.html)
-  nmap \ @
-  nnoremap S :sh<cr>
-  inoremap ;a <Esc>
-  inoremap ;s <C-O>:w!<Cr>
-  nnoremap ;s :w!<cr>
-  inoremap ;d <Esc>:w!<Cr>
-  nnoremap ;e :Explore<cr>
-  "paste help of os x
-  inoremap ;v <C-O>:r!pbpaste<Cr>
-  nnoremap ;v :r!pbpaste<Cr>
-  vnoremap Y "+y
 "General
-  let mapleader=","
-  let maplocalleader=" "
-  "quicker change and deletes
-  onoremap L g_
-  onoremap H 0
-  nnoremap L g_
-  nnoremap H 0
-  vnoremap L g_
-  vnoremap H 0
-  nnoremap WH <C-W>h:wq!<cr>
-  nnoremap WL <C-W>l:wq!<cr>
-  nnoremap WK <C-W>k:wq!<cr>
-  nnoremap WJ <C-W>j:wq!<cr>
-  nnoremap <leader>H :help 
-  "state shortcuts
-  nnoremap QQ :q!<cr>
-  nnoremap WW :w!<cr>
-  nnoremap EE :e!<cr>
-  nnoremap CC :ccl<cr>
-"Emacs Style Command Line Editing
-  cnoremap <C-A> <Home>
-  cnoremap <C-E> <End>
-  cnoremap <C-F> <Right>
-  cnoremap <C-B> <Left>
-  cnoremap <C-P> <Up>
-  cnoremap <C-N> <Down>
-  cnoremap <C-D> <Del>
+  " general helpers
   "Search Selected Text
     vnoremap * y/<c-r>"<cr>
 " save
@@ -51,38 +13,34 @@
   nnoremap <leader>rv :source $MYVIMRC<cr>
   nnoremap <leader>rs :call ReloadAllSnippets()<cr>
   nnoremap <leader>erc :vsp ~/.vimrc<cr>
+
   nnoremap <leader>ek :vsp ~/.vim/init/keybindings.vim<cr>
+  nnoremap <leader>em :vsp ~/Code/Projects/vim/vim-emacs-and-cheese/plugin/emacs-and-cheese.vim<cr>
   nnoremap <leader>tt :vsp ~/Dropbox/Todotxt/todo.txt<cr>
   nnoremap <leader>egc :vsp ~/.gitconfig<cr>
-  nnoremap <leader>ea :vsp ~/.vim/init/abbreviations.vim<cr>
+  nnoremap <leader>eab :vsp ~/.vim/init/abbreviations.vim<cr>
   nnoremap <leader>eo :vsp ~/.vim/init/options.vim<cr>
-"Split stuff
-  nnoremap <leader>v :vnew<cr>
-  noremap <leader>h :new<cr>
-"Swap Lines Like TextMate
-  nnoremap <C-J> ddp
-  nnoremap <C-K> ddkP
-  "clear unused buffers
-  function! CloseUnloadedBuffers()
-      let lastBuffer = bufnr('$')
+  nnoremap <leader>eal :vsp ~/dotfiles/sh/aliases.sh<cr>
 
-      let currentBuffer = 1
-      while currentBuffer <= lastBuffer
-          " If buffer exists, is shown in :ls output, and isn't loaded
-          if bufexists(currentBuffer) && buflisted(currentBuffer) && bufloaded(currentBuffer) == 0
-              execute 'bdelete' currentBuffer
-          endif
+"only open buffers
+function! CloseUnloadedBuffers()
+    let lastBuffer = bufnr('$')
 
-          let currentBuffer = currentBuffer + 1
-      endwhile
-  endfunction
+    let currentBuffer = 1
+    while currentBuffer <= lastBuffer
+        " If buffer exists, is shown in :ls output, and isn't loaded
+        if bufexists(currentBuffer) && buflisted(currentBuffer) && bufloaded(currentBuffer) == 0
+            execute 'bdelete' currentBuffer
+        endif
+
+        let currentBuffer = currentBuffer + 1
+    endwhile
+endfunction
 "plugins
   "Ctrl-P
-    nnoremap <leader>f :CtrlP<cr>
+    nnoremap <leader>f :find 
   "Tabular
-    nnoremap  <leader>=  :Tabularize /
-  "Gundo
-    nnoremap <leader>u :GundoToggle<cr>
+    vnoremap  <leader>=  :Tabularize /
   "Ag
     nnoremap <leader>a :Ag! -QS<space>
     nnoremap <leader>A :AgFromSearch -QS<cr>
@@ -91,14 +49,6 @@
     "nnoremap <leader>g :silent execute "grep! -R ". shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>:redraw!<cr>
   "Zoomwin
     nnoremap <leader><leader> :ZoomWin<cr>
-  "Git Stuff
-    nnoremap <silent> <leader>gb :Gblame<cr>
-    nnoremap <silent> <leader>gc :Gcommit<cr>
-    nnoremap <silent> <leader>gs :Gstatus<cr>
-    nnoremap <silent> <leader>gd :Gdiff<cr>
-    nnoremap <silent> <leader>gh :Gbrowse<cr>
-    nnoremap <silent> <leader>ge :Gedit<cr>
-    nnoremap <silent> <leader>gl :Glog<cr>
   "Vimux Stuff
     "this is just annoying
       no <silent><leader>r :<cr>
@@ -124,5 +74,4 @@
             setlocal buftype=nofile
           "insert compiled html
             execute "r ! /Users/rich/bin/markdown " . buffer . " | lynx -stdin -dump"
-
       endfunction
