@@ -64,3 +64,9 @@
 [submodule "vim/vim.symlink/bundle/vim-ruby"]
 	path = vim/vim.symlink/bundle/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "vim/vim.symlink/bundle/vim-capmap"]
+	path = vim/vim.symlink/bundle/vim-capmap
+	url = https://github.com/richsoni/vim-capmap.git
+[submodule "vim/vim.symlink/bundle/vim-emacs-and-cheese"]
+	path = vim/vim.symlink/bundle/vim-emacs-and-cheese
+	url = git://github.com/richsoni/vim-emacs-and-cheese.git
