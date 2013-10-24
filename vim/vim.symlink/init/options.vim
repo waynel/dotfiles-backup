@@ -1,4 +1,5 @@
 set nocompatible
+set wildcharm=<C-Z>
 set path+=**
 filetype plugin on
 runtime macros/matchit.vim

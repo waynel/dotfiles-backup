@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+if [ $# -eq 0 ]
+then
+  echo 'Usage: dtv value => %Y-%m-%d	$value';
+  exit 0;
+fi
+DATE=`date '+%Y-%m-%d'`;
+echo "$DATE	$1";
+

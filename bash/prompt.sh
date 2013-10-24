@@ -4,6 +4,7 @@ echo -en "\033[0;$1m"
 }
 underline_prompt(){
   #grab unformatted text from external programs
+    time=`date '+%H:%M'`
     pwd_relative=`pwd`
     ruby_version=`ruby -v`
     hostname=`uname -n`
@@ -12,6 +13,7 @@ underline_prompt(){
     git_sha=`git reflog -n 1 2> /dev/null`
   #format program output
     pwd_relative=${pwd_relative/~/\~} #replace /Users/rich with ~
+    pwd_time="${pwd_relative}(${time})"
     ruby_version=${ruby_version#* } #remove the ruby 
     ruby_version=${ruby_version%% *} #remove the rest except the version 
     hostname=${hostname%\.*} #remove the domain from the hostname
@@ -20,7 +22,7 @@ underline_prompt(){
     git_sha=${git_sha%%\ *} #strip all but the sha
 
 
-  PWD_REL_WIDTH=${#pwd_relative}
+  PWD_TIME_WIDTH=${#pwd_time}
 
   RUBY_WIDTH=${#ruby_version} #sub the 3 to space out the spaces as needed
   HOST_WIDTH=${#host_info}
@@ -29,7 +31,7 @@ underline_prompt(){
 
   USED_WIDTH_EXTRA="$(($RUBY_WIDTH + $HOST_WIDTH + $GIT_BRANCH_WIDTH + $GIT_SHA_WIDTH))"
   [ ${#git_status} -gt 0 ] && USED_WIDTH_EXTRA="$(($USED_WIDTH_EXTRA + 1))"
-  USED_WIDTH_PARTIAL=$PWD_REL_WIDTH
+  USED_WIDTH_PARTIAL=$PWD_TIME_WIDTH
   USED_WIDTH_FULL="$(($USED_WIDTH_PARTIAL + $USED_WIDTH_EXTRA))"
   AVAIL_WIDTH_PARTIAL="$(($COLUMNS - $USED_WIDTH_PARTIAL))"
   AVAIL_WIDTH_FULL="$(($COLUMNS - $USED_WIDTH_FULL - 3))"
@@ -38,6 +40,8 @@ underline_prompt(){
   then
     ch_fg_col "32" #pwd
     echo -en $pwd_relative
+    ch_fg_col "33" #git sha
+    echo -en "(${time})"
     ch_fg_col "35" #dashes
     if [ $AVAIL_WIDTH_FULL -gt 0 ]
     then

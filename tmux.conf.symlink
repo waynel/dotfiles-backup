@@ -1,6 +1,4 @@
 # act like GNU screen
-  set -g prefix C-f
-  bind C-f send-prefix
   bind C-k send-keys -R \; clear-history
 #switch sessions
   bind -r ( switch-client -p

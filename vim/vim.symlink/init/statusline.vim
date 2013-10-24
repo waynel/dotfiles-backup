@@ -10,3 +10,5 @@ set statusline+=\
 set statusline+=%M  "state of file
 set statusline+=%= "switch to right
 set statusline+=%L\ Lines
+set statusline+=\ 
+set statusline+=%{fugitive#statusline()}

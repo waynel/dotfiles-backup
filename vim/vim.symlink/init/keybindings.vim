@@ -1,5 +1,51 @@
+noremap K ""
+" Jump to the next or previous line that has the same level or a lower
+" level of indentation than the current line.
+"
+" exclusive (bool): true: Motion is exclusive
+" false: Motion is inclusive
+" fwd (bool): true: Go to next line
+" false: Go to previous line
+" lowerlevel (bool): true: Go to line with lower indentation level
+" false: Go to line with the same indentation level
+" skipblanks (bool): true: Skip blank lines
+" false: Don't skip blank lines
+function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
+  let line = line('.')
+  let column = col('.')
+  let lastline = line('$')
+  let indent = indent(line)
+  let stepvalue = a:fwd ? 1 : -1
+  while (line > 0 && line <= lastline)
+    let line = line + stepvalue
+    if ( ! a:lowerlevel && indent(line) == indent ||
+          \ a:lowerlevel && indent(line) < indent)
+      if (! a:skipblanks || strlen(getline(line)) > 0)
+        if (a:exclusive)
+          let line = line - stepvalue
+        endif
+        exe line
+        exe "normal " column . "|"
+        return
+      endif
+    endif
+  endwhile
+endfunction
+
+" Moving back and forth between lines of same or lower indentation.
+nnoremap <silent> [, :call NextIndent(0, 0, 0, 1)<CR>
+nnoremap <silent> ], :call NextIndent(0, 1, 0, 1)<CR>
+nnoremap <silent> [< :call NextIndent(0, 0, 1, 1)<CR>
+nnoremap <silent> ]< :call NextIndent(0, 1, 1, 1)<CR>
+vnoremap <silent> [, <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
+vnoremap <silent> ], <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
+vnoremap <silent> [< <Esc>:call NextIndent(0, 0, 1, 1)<CR>m'gv''
+vnoremap <silent> ]< <Esc>:call NextIndent(0, 1, 1, 1)<CR>m'gv''
+onoremap <silent> [, :call NextIndent(0, 0, 0, 1)<CR>
+onoremap <silent> ], :call NextIndent(0, 1, 0, 1)<CR>
+onoremap <silent> [< :call NextIndent(1, 0, 1, 1)<CR>
+onoremap <silent> ]< :call NextIndent(1, 1, 1, 1)<CR>
 "General
-  " general helpers
   "Search Selected Text
     vnoremap * y/<c-r>"<cr>
 " save
@@ -36,6 +82,7 @@ function! CloseUnloadedBuffers()
         let currentBuffer = currentBuffer + 1
     endwhile
 endfunction
+nnoremap <leader>b :call CloseUnloadedBuffers()<cr>
 "plugins
   "Ctrl-P
     nnoremap <leader>f :find 
@@ -48,7 +95,7 @@ endfunction
     vnoremap <silent> <leader>A y:AgFile<space><c-r>"<cr>
     "nnoremap <leader>g :silent execute "grep! -R ". shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>:redraw!<cr>
   "Zoomwin
-    nnoremap <leader><leader> :ZoomWin<cr>
+    nnoremap <leader>z :ZoomWin<cr>
   "Vimux Stuff
     "this is just annoying
       no <silent><leader>r :<cr>
