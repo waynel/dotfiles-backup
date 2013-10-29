@@ -25,7 +25,6 @@ runtime macros/matchit.vim
   " Set search highlighting,
   " Press space to turn off highlighting
     set hls
-    nnoremap <silent> <space> :nohlsearch<Bar>:echo<cr>""
 " Behavior
   "auto center cursor
     set so=999

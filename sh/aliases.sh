@@ -30,6 +30,7 @@
   alias tedocs='cd ~/Documents/TicketEvolution'
   alias e='cd ~/workspace/exchange'
   alias p='cd ~/workspace/pos.rb'
+  alias c='cd ~/workspace/carbon'
 #Rails Shortcuts
   alias tmux_rails='~/dotfiles/tmux_sessions/railsmux'
   alias r='rails'
