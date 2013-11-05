@@ -10,6 +10,7 @@
   alias ..="cd .."
   alias ...="cd ../.."
   alias ls="ls -G"
+  alias l="ls -G"
   alias ll="ls -Ghla"
   alias lsd="ls -d */"
   alias rm='rm -i'

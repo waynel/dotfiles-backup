@@ -5,8 +5,7 @@ filetype plugin on
 runtime macros/matchit.vim
 "UX Stuff
   set guifont=Inconsolata:h20
-  set guioptions-=T  " Hide gui chrome
-  set guioptions-=e  " Use text tabs
+  set guioptions-=T  " Hide gui chrome set guioptions-=e  " Use text tabs
   set guioptions-=rL " No scrollbar
   set visualbell      " Suppress bell
   set cursorline
