@@ -1,60 +1,6 @@
 ;shortcuts inside of git command
 [alias]
-  type = "!git config -l | grep alias | cut -c 7-"
-
-
-  c = commit
-  scc = "!SKIP_CHECKS=all git commit"
-  aua= add -u .
-  aa= add .
-  ab= add !$
-  pr = pull --rebase
-  poh = push origin HEAD
-  rhh = reset --hard HEAD
-
-  rb=rebase
-  rbm=rebase master
-  rbc=rebase --continue
-  rba=rebase --abort
-  rbc=rebase --continue
-  rbs=rebase --skip
-
   g = grep
-  s = status --short
-  bad = "!git status --short | grep --color=always ' M|UU|AA|DU'"
-;  bad_s = "!git bad | grep -o '[^ ]*$'"
-
-  d = diff
-  dc = diff --cached
-
-  br = branch
-  sb = show branch
-  sprint = "!git fetch; git branch --list -a | grep '^\\s*remotes' | grep 'sprint' | cut -d / -f 4 | sort | tail -1 | xargs -I{} git branch --list -a *{} | grep '\\s*remotes' | cut -d / -f 3,4"
-  done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; f"
-  ch = checkout
-  cl = checkout @{-1}
-  cm = checkout master
-
-  cp  = cherry-pick
-  cpl = "!git cplt | xargs -I{} git cp {}; "
-  cplt = log --all --author='Rich Soni' --author='richsoni' --pretty=format:"%h" -n 1
-
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  la = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --all
-  lal = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat --all
-  mls  = "!git ls --author='Rich Soni' --author='richsoni'"
-  ml = "!git ll --author='Rich Soni' --author='richsoni'"
-  mla = "!git la --author='Rich Soni' --author='richsoni'"
-  mlal = "!git lal --author='Rich Soni' --author='richsoni'"
-
-
-  sl = stash list
-  sa = stash apply
-  ss = stash show
-  sp = stash pop
-  cs = checkout stash@{0} --
-
 ;dont compalain about whitespace when merging
 [apply]
   whitespace = nowarn
@@ -69,15 +15,15 @@
   ;by default do git pull --rebase
   autosetuprebase = always
 [core]
-  excludesfile = /Users/rich/.gitignore_global
+  excludesfile = /Users/wayne/.gitignore_global
   editor = "vim"
 [diff]
   tool = vimdiff
 [web]
   browser = open
 [user]
-  name = Rich Soni
-  email = rich@richsoni.com
+  name = Wayne Liu
+  email = waynel@ticketevolution.com
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path = 
 [url "git@github.com:"]

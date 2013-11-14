@@ -1,7 +1,0 @@
-def _!(num = 2)
-  line = Pry.history.to_a[-1-num]
-  puts "evaling #{line}"
-  unless line == '_!' or line == '_'
-    Pry.send(:eval, line)
-  end
-end
