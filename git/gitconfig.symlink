@@ -1,6 +1,9 @@
 ;shortcuts inside of git command
 [alias]
   g = grep
+  st = status
+  rhh = reset --hard HEAD
+  poh = push origin HEAD
 ;dont compalain about whitespace when merging
 [apply]
   whitespace = nowarn
