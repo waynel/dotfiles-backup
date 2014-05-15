@@ -1,16 +1,10 @@
 " Keybindings
 " -----------
-let mapleader = ","
-let maplocalleader = ";"
 
+noremap Y "*y
 nmap <leader>t :tabe<cr> 
-nnoremap QQ :q!<cr>
-nmap Q :echo('')<cr>
 " kj - The intuitive way to get out of insert mode
 imap kj         <Esc>
-
-" Make Y consistent with D and C
-map Y           y$
 
 " Search
 nmap <leader>s  :%s/
@@ -90,6 +84,7 @@ map <leader>f   :CtrlP<CR><F5>
 " ctags with rails load path
 map <leader>rt  :!rails runner 'puts $LOAD_PATH.join(" ")' \| xargs /usr/local/bin/ctags -R public/javascripts<CR>
 map <leader>T   :!rails runner 'puts $LOAD_PATH.join(" ")' \| xargs rdoc -f tags<CR>
+nnoremap <leader>] : !bundle show --paths \| xargs ctags -Rf.git/tags; ctags -R -a *<cr>
 " Git blame map <leader>g   :Gblame<CR>
 
 " Comment/uncomment lines
@@ -143,39 +138,24 @@ map <leader>a :Ack<space>
 " Recalculate diff when it gets messed up.
 nmap du :diffupdate<CR>
 
-" Gundo.vim
-map <leader>u :GundoToggle<CR>
-
-"Swap Lines
-function! s:swap_lines(n1, n2)
-   let line1 = getline(a:n1)
-   let line2 = getline(a:n2)
-   call setline(a:n1, line2)
-   call setline(a:n2, line1)
-endfunction
-
-function! s:swap_up()
-   let n = line('.')
-   if n == 1
-       return
-   endif
-
-   call s:swap_lines(n, n - 1)
-   exec n - 1
-endfunction
-
-function! s:swap_down()
-   let n = line('.')
-   if n == line('$')
-       return
-   endif
-
-   call s:swap_lines(n, n + 1)
-   exec n + 1
-endfunction
-
-noremap <silent> <M-k> :call <SID>swap_up()<CR>
-noremap <silent> <M-j> :call <SID>swap_down()<CR>
-
 "Search Selected Text
 vmap * y/<c-r>"<cr>
+
+"Coffee Stuff
+    nnoremap <silent><leader>cc  :CoffeeCompile vert<cr>
+
+"Vimux Stuff
+  "this is just annoying
+    no <silent><leader>r :<cr>
+  "prompt for a command to run
+    nnoremap <leader>RR  :VimuxPromptCommand<cr>
+    nnoremap <leader>rr  Vy:call VimuxRunCommand('<c-r>"')<CR>
+    vnoremap <leader>rr  y:call VimuxRunCommand('<c-r>"')<CR>
+    nnoremap <leader>rl  :VimuxRunLastCommand<cr>
+    nnoremap <leader>rx  :VimuxCloseRunner<cr>
+    nnoremap <leader>rc  :let VimuxUseNearestPane = 1<cr>
+    nnoremap <leader>rr  V"vy:call VimuxRunCommand(escape(@v, '`'))<CR>
+    vnoremap <leader>rr  "vy:call VimuxRunCommand(escape(@v, '`'))<CR>
+
+"tabular
+    vnoremap <leader>=  :Tabularize /

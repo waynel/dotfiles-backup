@@ -1,4 +1,7 @@
 set completion-ignore-case on
+# TAB menu-complete
+# "\e[Z": menu-complete-backward
+# "\C-T": complete
 ## for vi mode
 #set editing-mode vi
 #$if mode=vi

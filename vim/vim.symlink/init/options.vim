@@ -20,6 +20,15 @@ set wildignore+=tmp/**             " ...Also tmp files.
 set wildignore+=public/uploads/**  " ...Also uploads.
 set wildignore+=public/images/**   " ...Also images.
 set wildignore+=vendor/**          " ...Also vendor.
+"change insert mode shape in tmux
+    if exists('$TMUX')
+      let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+      let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    else
+      let &t_SI = "\<Esc>]50;CursorShape=2\x7"
+      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    endif
+
 
 set list                        " Show whitespace
 if has("gui_running")
@@ -35,6 +44,7 @@ set splitbelow                  " ... and bottom
 set wildmode=list:longest       " Bash-like tab completion
 set scrolloff=3                 " Scroll when the cursor is 3 lines from edge
 set cursorline                  " Highlight current line
+set cursorcolumn                " Highlight current column
 
 " More detailed status line
 set statusline=[%n]\ %f\ %m\ %y
@@ -54,9 +64,9 @@ set smartcase                   " Smart case-sensitivity when searching (overrid
 
 set autoread                    " No prompt for file changes outside Vim
 
-set swapfile                    " Keep swapfiles
-set directory=~/.vim-tmp,~/tmp,/var/tmp,/tmp
-set backupdir=~/.vim-tmp,~/tmp,/var/tmp,/tmp
+set nobackup       "no backup files
+set nowritebackup  "only in case you don't want a backup file while editing
+set noswapfile     "no swap files
 
 set hls                         " search with highlights by default
 " Press Space to turn off highlighting and clear any message already

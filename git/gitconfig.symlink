@@ -4,6 +4,7 @@
   st = status
   rhh = reset --hard HEAD
   poh = push origin HEAD
+  pretty = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen%cn%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 ;dont compalain about whitespace when merging
 [apply]
   whitespace = nowarn
@@ -32,3 +33,11 @@
 [url "git@github.com:"]
     pushInsteadOf = git://github.com/
     pushInsteadOf = https://github.com/
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = simple

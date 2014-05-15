@@ -1,3 +1,4 @@
+set-option -g default-command "reattach-to-user-namespace -l bash"
 # act like GNU screen
   set -g prefix C-q
   bind C-k send-keys -R \; clear-history
@@ -40,7 +41,6 @@
   set -g mouse-resize-pane on
   set -g mouse-select-window on
 
-
 # colors
   set -g default-terminal "screen-256color"
 #    #status bar
@@ -53,8 +53,9 @@
      setw -g window-status-current-fg black
      setw -g window-status-current-bg green
      setw -g window-status-current-attr bright
-# #status line 
-    set -g status-left '#[fg=yellow](#S)'
+# #status line
+    set -g status-justify centre
+    set -g status-centre '#[fg=yellow](#S)'
     set -g status-right-length 120
     set -g status-right "#(batt source) | #(batt remaining) [#(batt capacity --tmux)]  #(date \"+%Y-%m-%d %H:%M\")"
 #  #panes
