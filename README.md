@@ -1,8 +1,8 @@
-# richsoni/dotfiles
+# waynel/dotfiles
 
 ## Introduction
 
-The basic structure of my dotfiles are based on Jonathan Clem's files [jclem/dotfiles](https://github.com/holman/dotfiles) which are based off of Zach Holman's [holman/dotfiles](https://github.com/holman/dotfiles) repository. Essentially, configuration files are grouped by topic (i.e. "git", "vim", "zsh", etc.). `*.zsh` files are sourced automatically, and a file named `something.symlink` will by symlinked to `~/.something`.
+These dotfiles are based off of Rich Soni's files [richsoni/dotfiles](https://github.com/richsoni/dotfiles), which are based off of Jonathan Clem's files [jclem/dotfiles](https://github.com/jclem/dotfiles), which are based off of Zach Holman's [holman/dotfiles](https://github.com/holman/dotfiles) repository. Essentially, configuration files are grouped by topic (i.e. "git", "vim", "zsh", etc.). `*.zsh` files are sourced automatically, and a file named `something.symlink` will by symlinked to `~/.something`.
 
 ## Installation
 
