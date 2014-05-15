@@ -6,7 +6,7 @@ These dotfiles are based off of Rich Soni's files [richsoni/dotfiles](https://gi
 
 ## Installation
 
-1. Clone the repository `git clone git@github.com:richsoni/dotfiles.git`
+1. Clone the repository `git clone git@github.com:waynel/dotfiles.git`
 2. `cd` into the repo `cd dotfiles`
 3. Run the installer `./install`
 4. Switch to system ruby (I use RVM, so: `rvm use system`)
