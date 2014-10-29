@@ -23,10 +23,6 @@ map <leader>w   ^Ww
 map <leader>=   ^W=
 map <leader>j   ^Wj
 map <leader>k   ^Wk
-nmap <C-j>      <C-w>j
-nmap <C-k>      <C-w>k
-nmap <C-h>      <C-w>h
-nmap <C-l>      <C-w>l
 
 " Open .vimrc file in new tab. Think Command + , [Preferences...] but with Shift.
 map <D-<>       :tabedit ~/.vimrc<CR>
